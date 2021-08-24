@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import RollPage from './RollPage';
-import Card from './Card';
+import CollectionPage from './CollectionPage';
 
 export default class App extends React.Component {
     render() {
@@ -9,13 +9,13 @@ export default class App extends React.Component {
             <Router>
                 <div className="app">
                     <Link to="/">Roll</Link>
-                    <Link to="/card">Card</Link>
+                    <Link to="/collection">Collection</Link>
                     <Switch>
                         <Route exact path='/'>
                             <RollPage />
                         </Route>
-                        <Route path='/card'>
-                            <Card />
+                        <Route path='/collection'>
+                            <CollectionPage />
                         </Route>
                     </Switch>
                 </div>
