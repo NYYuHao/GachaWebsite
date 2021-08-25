@@ -6,7 +6,7 @@ export default class RollPage extends React.Component {
         return (
             <div className="roll-page">
                 <h1>Gacha Website</h1>
-                <Card />
+                <Card id="500"/>
             </div>
         );
     }
