@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './Card';
 
 let cards = [100, 200, 300];
-let cardsList = cards.map((card) => <Card id={card} />);
+let cardsList = cards.map((card) => <Card key={card} id={card} />);
 
 export default class CollectionPage extends React.Component {
     render() {
