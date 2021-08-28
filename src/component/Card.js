@@ -1,28 +1,40 @@
 import React from 'react';
+import {getCharacter} from '../logic/Anilist.js'
 import './Card.css';
 
 export default class Card extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {character: this.getCharacter(props.id)};
-    };
-
-    getCharacter(id) {
-        return {
-            name: "Test Name",
-            series: "Test Series",
-            value: id,
-            image: "Test Link"
+        this.state = {
+            id: props.id,
+            name: null,
+            series: null,
+            value: null,
+            image: null
         };
     };
+
+    componentDidMount() {
+        this.setCharacterState(this.state.id);
+    }
+
+    async setCharacterState(id) {
+        let characterState = await getCharacter(id);
+        let character = characterState.data.Character;
+        this.setState({
+            name: character.name.full,
+            value: character.favourites,
+            image: character.image.large
+        });
+    }
 
     render() {
         return (
             <div className="card">
-                <h2>{this.state.character.name}</h2>
-                <p>{this.state.character.series}</p>
-                <p>{this.state.character.value}</p>
-                <p>{this.state.character.image}</p>
+                <h2>{this.state.name}</h2>
+                <p>{this.state.series}</p>
+                <p>{this.state.value}</p>
+                <img src={this.state.image} alt="Character"/>
             </div>
         );
     };

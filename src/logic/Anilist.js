@@ -28,6 +28,6 @@ function getCharacter(id) {
     };
   
     return fetch(url, options).then((res) => {return res.json()});
-}
+};
 
-getCharacter(500).then(console.log);
+export {getCharacter};
