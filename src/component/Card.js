@@ -1,5 +1,5 @@
 import React from 'react';
-import {getCharacter} from '../logic/Anilist.js'
+import {getCharacterById} from '../logic/Anilist.js'
 import './Card.css';
 
 export default class Card extends React.Component {
@@ -19,7 +19,7 @@ export default class Card extends React.Component {
     }
 
     async setCharacterState(id) {
-        let characterState = await getCharacter(id);
+        let characterState = await getCharacterById(id);
         let character = characterState.data.Character;
         this.setState({
             name: character.name.full,
