@@ -5,10 +5,12 @@ export default class RollPage extends React.Component {
     // Given a character, return a card component with relevant buttons
     renderCard(character) {
         return <Card 
-             name={character.name}
-             value={character.value}
-             image={character.image}
-             key={character.name} />
+            name={character.name}
+            value={character.value}
+            image={character.image}
+            handleClaim={character.handleClaim}
+            handleSkip={character.handleSkip}
+            key={character.name} />
     }
 
     render() {

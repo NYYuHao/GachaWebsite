@@ -29,9 +29,21 @@ export default class App extends React.Component {
                 return {
                     name: character.name.full,
                     value: character.favourites,
-                    image: character.image.large
+                    image: character.image.large,
+                    handleClaim: () => this.handleClaim(character.id),
+                    handleSkip: () => this.handleSkip(character.id)
                 };}
         )});
+    }
+
+    // Handle claim when the button is clicked on a card
+    handleClaim(id) {
+        console.log(`Claimed character: ${id}`);
+    }
+
+    // Handle skip when the button is clicked on a card
+    handleSkip(id) {
+        console.log(`Skipped character: ${id}`);
     }
 
     render() {

@@ -4,6 +4,7 @@ function getCharacterById(id) {
     let query = `
         query ($id: Int) {
             Character (id: $id) {
+                id
                 name {
                     full
                 }
@@ -41,10 +42,11 @@ function getCharactersByIds(ids) {
                     lastPage
                     hasNextPage
                 }
-            characters (id_in:$id_in){
-                name {
-                    full
-                }
+                characters (id_in:$id_in){
+                    id
+                    name {
+                        full
+                    }
                     favourites
                     image {
                         large
