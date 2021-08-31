@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import RollPage from './RollPage';
 import CollectionPage from './CollectionPage';
 import {getCharactersByIds} from '../logic/Anilist.js';
-import {generateCharacters} from '../logic/Data';
+import {generateCharacterIds} from '../logic/Data';
 
 // App with router for switching between pages
 export default class App extends React.Component {
@@ -15,7 +15,7 @@ export default class App extends React.Component {
     }
 
     componentDidMount() {
-        this.setRollCharacters(generateCharacters());
+        this.setRollCharacters(generateCharacterIds());
     }
 
     async setRollCharacters(ids) {
