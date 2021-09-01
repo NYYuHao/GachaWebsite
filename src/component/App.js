@@ -1,5 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+
 import RollPage from './RollPage';
 import CollectionPage from './CollectionPage';
 import {getCharactersByIds} from '../logic/Anilist.js';
@@ -10,7 +11,7 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            rollCharacters: []
+            rollCharacters: {}
         };
     }
 
@@ -24,21 +25,23 @@ export default class App extends React.Component {
 
         // Update the state by mapping all returned characters to expected
         // array format
-        this.setState({rollCharacters:
-            charactersData.data.Page.characters.map((character) => {
-                return {
-                    name: character.name.full,
-                    value: character.favourites,
-                    image: character.image.large,
-                    handleClaim: () => this.handleClaim(character.id),
-                    handleSkip: () => this.handleSkip(character.id)
-                };}
-        )});
+        let rollState = {};
+        charactersData.data.Page.characters.forEach((character) => {
+            rollState[character.id] = {
+                name: character.name.full,
+                value: character.favourites,
+                image: character.image.large,
+                handleClaim: () => this.handleClaim(character.id),
+                handleSkip: () => this.handleSkip(character.id)
+            };});
+        this.setState({rollCharacters: rollState});
     }
 
     // Handle claim when the button is clicked on a card
     handleClaim(id) {
         console.log(`Claimed character: ${id}`);
+        delete this.state.rollCharacters[id];
+        this.setState({rollCharacters: this.state.rollCharacters});
     }
 
     // Handle skip when the button is clicked on a card

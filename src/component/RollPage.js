@@ -15,7 +15,7 @@ export default class RollPage extends React.Component {
 
     render() {
         // Build card components based on props character data
-        let cardsList = this.props.characters.map(this.renderCard);
+        let cardsList = Object.values(this.props.characters).map(this.renderCard);
 
         return (
             <div className="roll-page">
