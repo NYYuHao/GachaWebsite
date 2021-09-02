@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import RollPage from './RollPage';
 import CollectionPage from './CollectionPage';
 import {getCharactersByIds} from '../logic/Anilist.js';
-import {generateCharacterIds} from '../logic/Data';
+import {generateCharacterIds, addCharacterToCollection} from '../logic/Data';
 
 // App with router for switching between pages
 export default class App extends React.Component {
@@ -40,8 +40,13 @@ export default class App extends React.Component {
     // Handle claim when the button is clicked on a card
     handleClaim(id) {
         console.log(`Claimed character: ${id}`);
+
+        // Delete the character from state
         delete this.state.rollCharacters[id];
         this.setState({rollCharacters: this.state.rollCharacters});
+
+        // Add the character to collection
+        addCharacterToCollection(id);
     }
 
     // Handle skip when the button is clicked on a card

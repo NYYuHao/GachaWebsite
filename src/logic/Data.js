@@ -17,4 +17,9 @@ function getCollectedCharacterIds() {
     return [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 }
 
-export {generateCharacterIds, getCollectedCharacterIds};
+function addCharacterToCollection(id) {
+    console.log("Adding character to collection");
+    return true;
+}
+
+export {generateCharacterIds, getCollectedCharacterIds, addCharacterToCollection};
