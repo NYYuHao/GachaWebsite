@@ -17,9 +17,16 @@ function getCollectedCharacterIds() {
     return [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 }
 
+// Add the given id to the user's collection (stored in localStorage)
 function addCharacterToCollection(id) {
     console.log("Adding character to collection");
-    return true;
+
+    let collection = JSON.parse(localStorage.collection);
+    if (!collection)
+        collection = [];
+    // Maybe should check if collection already has id
+    collection.push(id);
+    localStorage.collection = JSON.stringify(collection);
 }
 
 export {generateCharacterIds, getCollectedCharacterIds, addCharacterToCollection};
