@@ -16,7 +16,10 @@ export default class App extends React.Component {
     }
 
     componentDidMount() {
+        // Set the characters that appear on the roll page
         this.setRollCharacters(generateCharacterIds());
+
+        // TODO: Set up event listener on page close to save data
     }
 
     async setRollCharacters(ids) {

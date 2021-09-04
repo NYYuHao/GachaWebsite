@@ -1,5 +1,7 @@
 // Might want to make this connect to a database
 // For now, just use localStorage
+var collection = localStorage.collection ?
+    JSON.parse(localStorage.collection) : new Set();
 
 // Generate array of random character IDs for RollPage keeping track of what
 // has been rolled
@@ -7,7 +9,13 @@
 // Some IDs seem to be missing (e.g. 8, 9, 10)
 function generateCharacterIds() {
     console.log("Generating characters");
-    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    let idArray = [];
+    while (idArray.length < 15) {
+        let id = Math.floor(Math.random() * 229946);
+        if (!collection.has(id))
+            idArray.push(id)
+    }
+    return idArray;
 }
 
 
@@ -21,12 +29,8 @@ function getCollectedCharacterIds() {
 function addCharacterToCollection(id) {
     console.log("Adding character to collection");
 
-    let collection = JSON.parse(localStorage.collection);
-    if (!collection)
-        collection = [];
     // Maybe should check if collection already has id
-    collection.push(id);
-    localStorage.collection = JSON.stringify(collection);
+    collection.add(id);
 }
 
 export {generateCharacterIds, getCollectedCharacterIds, addCharacterToCollection};
