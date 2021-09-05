@@ -27,6 +27,7 @@ function getCharacterById(id) {
             variables: {id: id}
         })
     };
+    console.log("Call to API: Singular");
   
     return fetch(url, options).then((res) => {return res.json()});
 };
@@ -67,6 +68,7 @@ function getCharactersByIds(ids) {
             variables: {id_in: ids, page: 1, perPage: 50}
         })
     };
+    console.log("Call to API: Page");
   
     return fetch(url, options).then((res) => {return res.json()});
 };

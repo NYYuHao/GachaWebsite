@@ -22,7 +22,7 @@ function generateCharacterIds() {
 // Get the characters IDs that have already been collected
 function getCollectedCharacterIds() {
     console.log("Getting collected characters");
-    return [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+    return Array.from(collection);
 }
 
 // Add the given id to the user's collection (stored in localStorage)
@@ -33,4 +33,15 @@ function addCharacterToCollection(id) {
     collection.add(id);
 }
 
-export {generateCharacterIds, getCollectedCharacterIds, addCharacterToCollection};
+// Format an Anilist character into an object for direct use
+function anilistToCharacter(anilistChar) {
+    return {
+        id: anilistChar.id,
+        name: anilistChar.name.full,
+        value: anilistChar.favourites,
+        image: anilistChar.image.large
+    };
+}
+
+export {generateCharacterIds, getCollectedCharacterIds,
+    addCharacterToCollection, anilistToCharacter};
