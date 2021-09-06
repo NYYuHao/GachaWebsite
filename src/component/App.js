@@ -5,7 +5,8 @@ import RollPage from './RollPage';
 import CollectionPage from './CollectionPage';
 import {getCharactersByIds} from '../logic/Anilist.js';
 import {generateCharacterIds, getCollectedCharacterIds,
-    addCharacterToCollection, anilistToCharacter} from '../logic/Data';
+    addCharacterToCollection, anilistToCharacter,
+    saveDataToStorage} from '../logic/Data';
 
 // App with router for switching between pages
 export default class App extends React.Component {
@@ -22,7 +23,10 @@ export default class App extends React.Component {
         this.setRollCharacters(generateCharacterIds());
         this.setCollectedCharacters(getCollectedCharacterIds());
 
-        // TODO: Set up event listener on page close to save data
+        // Set up event listener on page close to save data
+        window.addEventListener("beforeunload", (ev) => {
+            saveDataToStorage();
+        });
     }
 
     // Set the state to contain the randomly generated characters for rolling
@@ -51,8 +55,8 @@ export default class App extends React.Component {
         console.log(`Claimed character: ${character.id}`);
 
         // Delete the character from state
-        // TODO: Probably shouldn't mutate rollCharacters
-        delete this.state.rollCharacters[character.id];
+        let rollCharacters = Object.assign(this.state.rollCharacters);
+        delete rollCharacters[character.id];
 
         // Add the character to collection
         let collectedCharacters =
@@ -61,8 +65,8 @@ export default class App extends React.Component {
         addCharacterToCollection(character.id);
 
         this.setState({
-            rollCharacters: this.state.rollCharacters,
-            collectedCharacters: this.state.collectedCharacters
+            rollCharacters: rollCharacters,
+            collectedCharacters: collectedCharacters
         });
     }
 

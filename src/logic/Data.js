@@ -1,7 +1,7 @@
 // Might want to make this connect to a database
 // For now, just use localStorage
 var collection = localStorage.collection ?
-    JSON.parse(localStorage.collection) : new Set();
+    new Set(JSON.parse(localStorage.collection)) : new Set();
 
 // Generate array of random character IDs for RollPage keeping track of what
 // has been rolled
@@ -43,5 +43,11 @@ function anilistToCharacter(anilistChar) {
     };
 }
 
+// Save collection to localstorage, to be called on page exit or at intervals
+function saveDataToStorage() {
+    localStorage.collection = JSON.stringify([...collection]);
+}
+
 export {generateCharacterIds, getCollectedCharacterIds,
-    addCharacterToCollection, anilistToCharacter};
+    addCharacterToCollection, anilistToCharacter,
+    saveDataToStorage};
