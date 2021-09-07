@@ -7,6 +7,7 @@ export default class RollPage extends React.Component {
         return <Card 
             name={character.name}
             value={character.value}
+            media={character.media}
             image={character.image}
             handleClaim={character.handleClaim}
             handleSkip={character.handleSkip}

@@ -38,6 +38,8 @@ function anilistToCharacter(anilistChar) {
     return {
         id: anilistChar.id,
         name: anilistChar.name.full,
+        media: anilistChar.media.nodes[0] ?
+            anilistChar.media.nodes[0].title.romaji : null,
         value: anilistChar.favourites,
         image: anilistChar.image.large
     };

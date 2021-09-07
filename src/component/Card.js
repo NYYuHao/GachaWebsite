@@ -6,7 +6,7 @@ export default class Card extends React.Component {
         return (
             <div className="card">
                 <h2>{this.props.name}</h2>
-                <p>{this.props.series}</p>
+                <p>{this.props.media}</p>
                 <p>{this.props.value}</p>
                 <img src={this.props.image} alt="Character"/>
                 <button onClick={this.props.handleClaim}>Claim</button>

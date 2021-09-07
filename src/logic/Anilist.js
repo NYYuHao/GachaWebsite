@@ -12,6 +12,13 @@ function getCharacterById(id) {
                 image {
                     large
                 }
+                media (perPage:1) {
+                    nodes {
+                        title {
+                            romaji
+                        }
+                    }
+                }
             }
         }`;
 
@@ -51,6 +58,13 @@ function getCharactersByIds(ids) {
                     favourites
                     image {
                         large
+                    }
+                    media (perPage:1) {
+                        nodes {
+                            title {
+                                romaji
+                            }
+                        }
                     }
   	            }
             }

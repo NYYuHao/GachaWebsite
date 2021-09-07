@@ -42,6 +42,7 @@ export default class App extends React.Component {
             rollState[character.id] = {
                 id: character.id,
                 name: character.name,
+                media: character.media,
                 value: character.value,
                 image: character.image,
                 handleClaim: () => this.handleClaim(character),
@@ -88,6 +89,7 @@ export default class App extends React.Component {
             collectedState[character.id] = {
                 id: character.id,
                 name: character.name,
+                media: character.media,
                 value: character.value,
                 image: character.image
             };});
