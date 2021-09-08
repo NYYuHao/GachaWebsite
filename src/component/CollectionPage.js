@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './Card';
+import './CollectionPage.css';
 
 export default class CollectionPage extends React.Component {
     // Given a character, return a card component with relevant buttons
@@ -19,7 +20,9 @@ export default class CollectionPage extends React.Component {
         return (
             <div className="collection-page">
                 <h1>Collection</h1>
-                {cardsList}
+                <div className="collection">
+                    {cardsList}
+                </div>
             </div>
         );
     }
