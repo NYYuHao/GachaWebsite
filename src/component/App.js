@@ -78,10 +78,23 @@ export default class App extends React.Component {
         console.log(`Claimed character: ${claimedCharacter.id}`);
     }
 
-    // TODO: Fix this
     // Handle skip when the button is clicked on a card
-    handleSkip(character) {
-        console.log(`Skipped character: ${character.id}`);
+    handleSkip() {
+        // Update the state by shifting character data
+        let skippedCharacter = this.state.currentCharacter;
+        let rolledCharacterStack = this.state.rolledCharacterStack.slice();
+        let currentCharacter = this.state.nextCharacter;
+        let nextCharacter = rolledCharacterStack.pop();
+
+        // TODO: Eventually have a page to the right with skipped characters 
+
+        this.setState({
+            rolledCharacterStack: rolledCharacterStack,
+            currentCharacter: currentCharacter,
+            nextCharacter: nextCharacter
+        });
+
+        console.log(`Skipped character: ${skippedCharacter.id}`);
     }
 
     // Set the state to contain characters already in the collection
@@ -115,7 +128,8 @@ export default class App extends React.Component {
                             <RollPage
                                 currentCharacter={this.state.currentCharacter}
                                 nextCharacter={this.state.nextCharacter}
-                                handleClaim={() => this.handleClaim()}/>
+                                handleClaim={() => this.handleClaim()}
+                                handleSkip={() => this.handleSkip()}/>
                         </Route>
                         <Route path='/collection'>
                             <CollectionPage characters={this.state.collectedCharacters}/>
