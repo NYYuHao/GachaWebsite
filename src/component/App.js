@@ -13,7 +13,9 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            rollCharacters: {},
+            currentCharacter: null,
+            nextCharacter: null,
+            rolledCharacterStack: [],
             collectedCharacters: {}
         };
     }
@@ -36,41 +38,47 @@ export default class App extends React.Component {
 
         // Update the state by mapping all returned characters to expected
         // array format
-        let rollState = {};
+        let rollStack = [];
         charactersData.data.Page.characters.forEach((anilistChar) => {
             let character = anilistToCharacter(anilistChar);
-            rollState[character.id] = {
+            rollStack.push({
                 id: character.id,
                 name: character.name,
                 media: character.media,
                 value: character.value,
                 image: character.image,
-                handleClaim: () => this.handleClaim(character),
-                handleSkip: () => this.handleSkip(character)
-            };});
-        this.setState({rollCharacters: rollState});
+            });});
+        this.setState({
+            currentCharacter: rollStack.pop(),
+            nextCharacter: rollStack.pop(),
+            rolledCharacterStack: rollStack
+        });
     }
 
-    // Handle claim when the button is clicked on a card
-    handleClaim(character) {
-        console.log(`Claimed character: ${character.id}`);
-
-        // Delete the character from state
-        let rollCharacters = Object.assign(this.state.rollCharacters);
-        delete rollCharacters[character.id];
+    // Handle claim when the claim button is clicked
+    handleClaim() {
+        // Update the state by shifting character data
+        let claimedCharacter = this.state.currentCharacter;
+        let rolledCharacterStack = this.state.rolledCharacterStack.slice();
+        let currentCharacter = this.state.nextCharacter;
+        let nextCharacter = rolledCharacterStack.pop();
 
         // Add the character to collection
         let collectedCharacters =
             Object.assign(this.state.collectedCharacters);
-        collectedCharacters[character.id] = character;
-        addCharacterToCollection(character.id);
+        collectedCharacters[claimedCharacter.id] = claimedCharacter;
+        addCharacterToCollection(claimedCharacter.id);
 
         this.setState({
-            rollCharacters: rollCharacters,
-            collectedCharacters: collectedCharacters
+            rolledCharacterStack: rolledCharacterStack,
+            currentCharacter: currentCharacter,
+            nextCharacter: nextCharacter
         });
+
+        console.log(`Claimed character: ${claimedCharacter.id}`);
     }
 
+    // TODO: Fix this
     // Handle skip when the button is clicked on a card
     handleSkip(character) {
         console.log(`Skipped character: ${character.id}`);
@@ -104,7 +112,10 @@ export default class App extends React.Component {
                     <Link to="/collection">Collection</Link>
                     <Switch>
                         <Route exact path='/'>
-                            <RollPage characters={this.state.rollCharacters}/>
+                            <RollPage
+                                currentCharacter={this.state.currentCharacter}
+                                nextCharacter={this.state.nextCharacter}
+                                handleClaim={() => this.handleClaim()}/>
                         </Route>
                         <Route path='/collection'>
                             <CollectionPage characters={this.state.collectedCharacters}/>

@@ -8,20 +8,23 @@ export default class RollPage extends React.Component {
             name={character.name}
             value={character.value}
             media={character.media}
-            image={character.image}
-            handleClaim={character.handleClaim}
-            handleSkip={character.handleSkip}
-            key={character.name} />
+            image={character.image}/>
     }
 
     render() {
         // Build card components based on props character data
-        let cardsList = Object.values(this.props.characters).map(this.renderCard);
+        let currentCard = this.props.currentCharacter ?
+            this.renderCard(this.props.currentCharacter) : null;
+        let nextCard = this.props.nextCharacter ?
+            this.renderCard(this.props.nextCharacter) : null;
 
         return (
             <div className="roll-page">
                 <h1>Gacha Website</h1>
-                {cardsList}
+                {currentCard}
+                <button onClick={this.props.handleClaim}>Claim</button>
+                <button onClick={this.props.handleSkip}>Skip</button>
+                {nextCard}
             </div>
         );
     }
