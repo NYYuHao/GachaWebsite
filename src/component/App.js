@@ -5,8 +5,8 @@ import RollPage from './RollPage';
 import CollectionPage from './CollectionPage';
 import {getCharactersByIds} from '../logic/Anilist.js';
 import {generateCharacterIds, getCollectedCharacterIds,
-    addCharacterToCollection, anilistToCharacter,
-    saveDataToStorage} from '../logic/Data';
+    addCharacterToCollection, removeCharacterFromCollection,
+    anilistToCharacter, saveDataToStorage} from '../logic/Data';
 
 // App with router for switching between pages
 export default class App extends React.Component {
@@ -55,8 +55,28 @@ export default class App extends React.Component {
         });
     }
 
-    // Handle claim when the claim button is clicked
-    handleClaim() {
+    // Set the state to contain characters already in the collection
+    async setCollectedCharacters(ids) {
+        // Get the character data returned by Anilist
+        let charactersData = await getCharactersByIds(ids);
+
+        // Update the state by mapping all returned characters to expected
+        // array format
+        let collectedState = {};
+        charactersData.data.Page.characters.forEach((anilistChar) => {
+            let character = anilistToCharacter(anilistChar);
+            collectedState[character.id] = {
+                id: character.id,
+                name: character.name,
+                media: character.media,
+                value: character.value,
+                image: character.image
+            };});
+        this.setState({collectedCharacters: collectedState});
+    }
+
+    // Handle claim when the claim button is clicked on RollPage
+    handleClaim = () => {
         // Update the state by shifting character data
         let claimedCharacter = this.state.currentCharacter;
         let rolledCharacterStack = this.state.rolledCharacterStack.slice();
@@ -78,8 +98,8 @@ export default class App extends React.Component {
         console.log(`Claimed character: ${claimedCharacter.id}`);
     }
 
-    // Handle skip when the button is clicked on a card
-    handleSkip() {
+    // Handle skip when the skip button is clicked on RollPage
+    handleSkip = () => {
         // Update the state by shifting character data
         let skippedCharacter = this.state.currentCharacter;
         let rolledCharacterStack = this.state.rolledCharacterStack.slice();
@@ -97,24 +117,17 @@ export default class App extends React.Component {
         console.log(`Skipped character: ${skippedCharacter.id}`);
     }
 
-    // Set the state to contain characters already in the collection
-    async setCollectedCharacters(ids) {
-        // Get the character data returned by Anilist
-        let charactersData = await getCharactersByIds(ids);
+    // Handle remove when the remove button is clicked on a card in
+    // CollectionPage
+    handleRemove = (character) => {
+        removeCharacterFromCollection(character.id);
 
-        // Update the state by mapping all returned characters to expected
-        // array format
-        let collectedState = {};
-        charactersData.data.Page.characters.forEach((anilistChar) => {
-            let character = anilistToCharacter(anilistChar);
-            collectedState[character.id] = {
-                id: character.id,
-                name: character.name,
-                media: character.media,
-                value: character.value,
-                image: character.image
-            };});
+        let collectedState = Object.assign(this.state.collectedCharacters);
+        delete collectedState[character.id];
+
         this.setState({collectedCharacters: collectedState});
+
+        console.log(`Removed character: ${character.id}`);
     }
 
     render() {
@@ -128,11 +141,13 @@ export default class App extends React.Component {
                             <RollPage
                                 currentCharacter={this.state.currentCharacter}
                                 nextCharacter={this.state.nextCharacter}
-                                handleClaim={() => this.handleClaim()}
-                                handleSkip={() => this.handleSkip()}/>
+                                handleClaim={this.handleClaim}
+                                handleSkip={this.handleSkip}/>
                         </Route>
                         <Route path='/collection'>
-                            <CollectionPage characters={this.state.collectedCharacters}/>
+                            <CollectionPage
+                                characters={this.state.collectedCharacters}
+                                handleRemove={this.handleRemove}/>
                         </Route>
                     </Switch>
                 </div>

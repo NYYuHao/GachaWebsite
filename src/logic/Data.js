@@ -29,8 +29,15 @@ function getCollectedCharacterIds() {
 function addCharacterToCollection(id) {
     console.log("Adding character to collection");
 
-    // Maybe should check if collection already has id
+    // TODO: Maybe should check if collection already has id
     collection.add(id);
+}
+
+// Remove the given id from the user's collection
+function removeCharacterFromCollection(id) {
+    console.log("Removing character from collection");
+
+    collection.delete(id);
 }
 
 // Format an Anilist character into an object for direct use
@@ -51,5 +58,5 @@ function saveDataToStorage() {
 }
 
 export {generateCharacterIds, getCollectedCharacterIds,
-    addCharacterToCollection, anilistToCharacter,
-    saveDataToStorage};
+    addCharacterToCollection, removeCharacterFromCollection,
+    anilistToCharacter, saveDataToStorage};
