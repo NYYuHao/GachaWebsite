@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './Card';
+import './RollPage.css';
 
 export default class RollPage extends React.Component {
     // Given a character, return a card component with relevant buttons
@@ -21,10 +22,12 @@ export default class RollPage extends React.Component {
         return (
             <div className="roll-page">
                 <h1>Gacha Website</h1>
-                {currentCard}
-                <button onClick={this.props.handleClaim}>Claim</button>
-                <button onClick={this.props.handleSkip}>Skip</button>
-                {nextCard}
+                <div className="rolls">
+                    {currentCard}
+                    <button onClick={this.props.handleClaim}>Claim</button>
+                    <button onClick={this.props.handleSkip}>Skip</button>
+                    {nextCard}
+                </div>
             </div>
         );
     }
