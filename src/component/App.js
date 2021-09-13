@@ -7,6 +7,7 @@ import {getCharactersByIds} from '../logic/Anilist.js';
 import {generateCharacterIds, getCollectedCharacterIds,
     addCharacterToCollection, removeCharacterFromCollection,
     anilistToCharacter, saveDataToStorage} from '../logic/Data';
+import './App.css'
 
 // App with router for switching between pages
 export default class App extends React.Component {
@@ -134,8 +135,10 @@ export default class App extends React.Component {
         return (
             <Router>
                 <div className="app">
-                    <Link to="/">Roll</Link>
-                    <Link to="/collection">Collection</Link>
+                    <div className="navbar">
+                        <Link to="/">Roll</Link>
+                        <Link to="/collection">Collection</Link>
+                    </div>
                     <Switch>
                         <Route exact path='/'>
                             <RollPage
