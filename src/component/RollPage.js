@@ -6,6 +6,7 @@ export default class RollPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            previousCharacter: {},
             currentCharacter: {},
             nextCharacter: {}
         }
@@ -22,9 +23,9 @@ export default class RollPage extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.currentCharacter !== this.props.currentCharacter) {
-            // TODO: Handle animation
             console.log('Switching characters');
             this.setState({
+                previousCharacter: prevProps.currentCharacter,
                 currentCharacter: this.props.currentCharacter,
                 nextCharacter: this.props.nextCharacter
             });
@@ -33,15 +34,24 @@ export default class RollPage extends React.Component {
 
     render() {
         // Build card components based on props character data
-        let currentCard = this.renderCard(this.state.currentCharacter);
-        let nextCard = this.renderCard(this.state.nextCharacter);
+        let previousCard = Object.keys(this.state.previousCharacter).length !== 0 ?
+            this.renderCard(this.state.previousCharacter) : null;
+        let currentCard = this.state.currentCharacter ? 
+            this.renderCard(this.state.currentCharacter) : null;
+        let nextCard = this.state.nextCharacter ?
+            this.renderCard(this.state.nextCharacter) : null;
 
         return (
             <div className="roll-page">
                 <h1>Gacha Website</h1>
 
                 <div className="rolls">
-                    {currentCard}
+                    <div key={this.state.previousCharacter.id} className="previous-card">
+                        {previousCard}
+                    </div>
+                    <div key={currentCard} className="current-card">
+                        {currentCard}
+                    </div>
                     <button onClick={this.props.handleClaim}>Claim</button>
                     <button onClick={this.props.handleSkip}>Skip</button>
                     {nextCard}
