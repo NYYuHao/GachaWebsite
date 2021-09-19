@@ -7,8 +7,8 @@ export default class RollPage extends React.Component {
         super(props);
         this.state = {
             previousCharacter: {},
-            currentCharacter: {},
-            nextCharacter: {}
+            currentCharacter: props.currentCharacter,
+            nextCharacter: props.nextCharacter
         }
     }
 
@@ -49,7 +49,7 @@ export default class RollPage extends React.Component {
                     <div key={this.state.previousCharacter.id} className="previous-card">
                         {previousCard}
                     </div>
-                    <div key={currentCard} className="current-card">
+                    <div className="current-card">
                         {currentCard}
                     </div>
                     <button onClick={this.props.handleClaim}>Claim</button>
