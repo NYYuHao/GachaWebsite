@@ -12,8 +12,11 @@
     100% {margin-left: 200%;}
 }
 
-.previous-card {
-    position: absolute;
+.current-card {
+    overflow: hidden;
+}
+
+.current-card.is-leaving {
     overflow: hidden;
     animation: card-leaving 0.5s forwards;
 }
