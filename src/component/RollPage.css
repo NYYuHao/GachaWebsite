@@ -5,6 +5,14 @@
     align-items: center;
     overflow: hidden;
     position: relative;
+    padding: 50px;
+}
+
+
+
+.current-card {
+    overflow: hidden;
+    z-index: 2;
 }
 
 @keyframes card-leaving {
@@ -12,11 +20,31 @@
     100% {margin-left: 200%;}
 }
 
-.current-card {
-    overflow: hidden;
-}
-
 .current-card.is-leaving {
     overflow: hidden;
     animation: card-leaving 0.5s forwards;
+}
+
+
+
+.next-card {
+    position: relative;
+    bottom: 670px;
+    right: 30px;
+    z-index: 1;
+}
+
+@keyframes card-entering {
+    0% {
+        bottom: 670px;
+        right: 30px;
+    }
+    100% {
+        bottom: 642px;
+        right: 0px
+    }
+}
+
+.next-card.is-transitioning {
+    animation: card-entering 0.5s forwards;
 }
