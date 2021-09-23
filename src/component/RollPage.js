@@ -63,7 +63,7 @@ export default class RollPage extends React.Component {
         // If there is still a card to load in, keep a card in the background
         // for transitions
         let backgroundCardClasses = this.props.nextCharacter
-            ? "card background-card" : "";
+            ? "card next-card" : "";
         
         //TODO: Positioning for buttons should ignore the existence of nextCard
         //TODO: Maybe use a grid to overlap the cards?
@@ -78,11 +78,11 @@ export default class RollPage extends React.Component {
                             {currentCard}
                         </div>
 
+                        <div className={backgroundCardClasses} />
+
                         <div className={nextCardClasses}>
                             {nextCard}
                         </div>
-
-                        {/*<div className={backgroundCardClasses} />*/}
                     </div>
 
                     {/* Buttons shouldn't function while animations are playing */}
