@@ -3,15 +3,20 @@
     flex-wrap: nowrap;
     flex-direction: column;
     align-items: center;
-    overflow: hidden;
     position: relative;
-    padding: 50px;
 }
 
 
+.card-grid {
+    display: grid;
+    grid-template-columns: 30px 300px 30px;
+    grid-template-rows: 30px 600px 30px;
+}
 
 .current-card {
     overflow: hidden;
+    grid-column: 2 / 4;
+    grid-row: 2 / 4;
     z-index: 2;
 }
 
@@ -21,16 +26,14 @@
 }
 
 .current-card.is-leaving {
-    overflow: hidden;
     animation: card-leaving 0.5s forwards;
 }
 
 
 
 .next-card {
-    position: relative;
-    bottom: 670px;
-    right: 30px;
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
     z-index: 1;
 }
 

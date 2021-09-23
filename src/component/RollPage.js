@@ -66,22 +66,24 @@ export default class RollPage extends React.Component {
             ? "card background-card" : "";
         
         //TODO: Positioning for buttons should ignore the existence of nextCard
-        //TODO: Maybe want to use absolute positioning for cards?
+        //TODO: Maybe use a grid to overlap the cards?
         return (
             <div className="roll-page">
                 <h1>Gacha Website</h1>
 
                 <div className="rolls">
-                    <div onAnimationEnd={() => this.onTransitionFinish()}
-                        className={currentCardClasses}>
-                        {currentCard}
-                    </div>
+                    <div className="card-grid">
+                        <div onAnimationEnd={() => this.onTransitionFinish()}
+                            className={currentCardClasses}>
+                            {currentCard}
+                        </div>
 
-                    <div className={nextCardClasses}>
-                        {nextCard}
-                    </div>
+                        <div className={nextCardClasses}>
+                            {nextCard}
+                        </div>
 
-                    <div className={backgroundCardClasses} />
+                        {/*<div className={backgroundCardClasses} />*/}
+                    </div>
 
                     {/* Buttons shouldn't function while animations are playing */}
                     <button onClick={!this.state.transitioning ?
