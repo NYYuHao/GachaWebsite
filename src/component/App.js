@@ -17,6 +17,7 @@ export default class App extends React.Component {
             currentCharacter: {},
             nextCharacter: {},
             rolledCharacterStack: [],
+            skippedCharacterStack: [],
             collectedCharacters: {}
         };
     }
@@ -104,13 +105,16 @@ export default class App extends React.Component {
         // Update the state by shifting character data
         let skippedCharacter = this.state.currentCharacter;
         let rolledCharacterStack = this.state.rolledCharacterStack.slice();
+        let skippedCharacterStack = this.state.skippedCharacterStack.slice();
         let currentCharacter = this.state.nextCharacter;
         let nextCharacter = rolledCharacterStack.pop();
 
-        // TODO: Eventually have a page to the right with skipped characters 
+        // Add skipped character to stack for ability to claim in the future
+        skippedCharacterStack.push(skippedCharacter);
 
         this.setState({
             rolledCharacterStack: rolledCharacterStack,
+            skippedCharacterStack: skippedCharacterStack,
             currentCharacter: currentCharacter,
             nextCharacter: nextCharacter
         });
