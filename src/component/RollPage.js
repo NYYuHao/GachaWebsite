@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './Card';
 import './RollPage.css';
 
-export default class RollPage extends React.Component {
+export class RollPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -93,5 +93,12 @@ export default class RollPage extends React.Component {
                 </div>
             </div>
         );
+    }
+}
+
+export class SkipsPage extends React.Component {
+    render() {
+        console.log(this.props);
+        return (<div></div>);
     }
 }

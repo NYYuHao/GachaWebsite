@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 
-import RollPage from './RollPage';
+import {RollPage, SkipsPage} from './RollPage';
 import CollectionPage from './CollectionPage';
 import {getCharactersByIds} from '../logic/Anilist.js';
 import {generateCharacterIds, getCollectedCharacterIds,
@@ -141,6 +141,7 @@ export default class App extends React.Component {
                 <div className="app">
                     <div className="navbar">
                         <Link to="/">Roll</Link>
+                        <Link to="skips/">Skips</Link>
                         <Link to="/collection">Collection</Link>
                     </div>
                     <Switch>
@@ -150,6 +151,10 @@ export default class App extends React.Component {
                                 nextCharacter={this.state.nextCharacter}
                                 handleClaim={this.handleClaim}
                                 handleSkip={this.handleSkip}/>
+                        </Route>
+                        <Route path='/skips'>
+                            <SkipsPage
+                                characters={this.state.skippedCharacterStack}/>
                         </Route>
                         <Route path='/collection'>
                             <CollectionPage
