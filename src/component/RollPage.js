@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './Card';
 import './RollPage.css';
 
-export class RollPage extends React.Component {
+export default class RollPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -54,6 +54,7 @@ export class RollPage extends React.Component {
             this.renderCard(this.state.currentCharacter) : null;
         let nextCard = this.state.nextCharacter ?
             this.renderCard(this.state.nextCharacter) : null;
+        let skippedCards = this.props.skippedCharacters.map(this.renderCard);
 
         // Define classNames based on whether the cards are in transition state
         let currentCardClasses = "current-card";
@@ -65,8 +66,6 @@ export class RollPage extends React.Component {
         let backgroundCardClasses = this.props.nextCharacter
             ? "card next-card" : "";
         
-        //TODO: Positioning for buttons should ignore the existence of nextCard
-        //TODO: Maybe use a grid to overlap the cards?
         return (
             <div className="roll-page">
                 <h1>Gacha Website</h1>
@@ -91,14 +90,11 @@ export class RollPage extends React.Component {
                     <button onClick={!this.state.transitioning ?
                         this.props.handleSkip : null}>Skip</button>
                 </div>
+
+                <div className="skips">
+                    {skippedCards}
+                </div>
             </div>
         );
-    }
-}
-
-export class SkipsPage extends React.Component {
-    render() {
-        console.log(this.props);
-        return (<div></div>);
     }
 }
