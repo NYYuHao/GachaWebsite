@@ -6,7 +6,7 @@ export default class RollPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            transitioning: false,
+            cardTransitioning: false,
             currentCharacter: props.currentCharacter,
             nextCharacter: props.nextCharacter
         }
@@ -27,14 +27,14 @@ export default class RollPage extends React.Component {
             // Avoid animation on first update with character info
             if (Object.keys(prevProps.currentCharacter).length === 0) {
                 this.setState({
-                    transitioning: false,
+                    cardTransitioning: false,
                     currentCharacter: this.props.currentCharacter,
                     nextCharacter: this.props.nextCharacter
                 });
             }
             // Otherwise trigger transition
             else {
-                this.setState({transitioning: true});
+                this.setState({cardTransitioning: true});
             }
         }
     }
@@ -42,7 +42,7 @@ export default class RollPage extends React.Component {
     // When animations finish, change transition state and update characters
     onTransitionFinish() {
         this.setState({
-            transitioning: false,
+            cardTransitioning: false,
             currentCharacter: this.props.currentCharacter,
             nextCharacter: this.props.nextCharacter
         });
@@ -57,10 +57,8 @@ export default class RollPage extends React.Component {
         let skippedCards = this.props.skippedCharacters.map(this.renderCard);
 
         // Define classNames based on whether the cards are in transition state
-        let currentCardClasses = "current-card";
-        currentCardClasses += this.state.transitioning ? " is-leaving" : "";
-        let nextCardClasses = "next-card";
-        nextCardClasses += this.state.transitioning ? " is-transitioning" : "";
+        let cardTransitionClass = this.state.cardTransitioning
+            ? " is-transitioning" : "";
         // If there is still a card to load in, keep a card in the background
         // for transitions
         let backgroundCardClasses = this.props.nextCharacter
@@ -73,21 +71,21 @@ export default class RollPage extends React.Component {
                 <div className="rolls">
                     <div className="card-grid">
                         <div onAnimationEnd={() => this.onTransitionFinish()}
-                            className={currentCardClasses}>
+                            className={'current-card' + cardTransitionClass}>
                             {currentCard}
                         </div>
 
                         <div className={backgroundCardClasses} />
 
-                        <div className={nextCardClasses}>
+                        <div className={'next-card' + cardTransitionClass}>
                             {nextCard}
                         </div>
                     </div>
 
                     {/* Buttons shouldn't function while animations are playing */}
-                    <button onClick={!this.state.transitioning ?
+                    <button onClick={!this.state.cardTransitioning ?
                         this.props.handleClaim : null}>Claim</button>
-                    <button onClick={!this.state.transitioning ?
+                    <button onClick={!this.state.cardTransitioning ?
                         this.props.handleSkip : null}>Skip</button>
                 </div>
 

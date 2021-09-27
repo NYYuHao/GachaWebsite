@@ -26,7 +26,7 @@
     100% {margin-left: 500%;}
 }
 
-.current-card.is-leaving {
+.current-card.is-transitioning {
     animation: card-leaving 0.5s forwards;
 }
 
