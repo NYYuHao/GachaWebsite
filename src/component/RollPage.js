@@ -2,11 +2,19 @@ import React from 'react';
 import Card from './Card';
 import './RollPage.css';
 
+// Enum to represent different states for menu animations
+const interfaceStates = {
+    ROLLS: 'rolls',
+    SKIPS: 'skips'
+}
+
 export default class RollPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cardTransitioning: false,
+            isCardTransitioning: false,
+            isInterfaceTransitioning: false,
+            interfaceState: interfaceStates.ROLLS,
             currentCharacter: props.currentCharacter,
             nextCharacter: props.nextCharacter
         }
@@ -27,22 +35,22 @@ export default class RollPage extends React.Component {
             // Avoid animation on first update with character info
             if (Object.keys(prevProps.currentCharacter).length === 0) {
                 this.setState({
-                    cardTransitioning: false,
+                    isCardTransitioning: false,
                     currentCharacter: this.props.currentCharacter,
                     nextCharacter: this.props.nextCharacter
                 });
             }
             // Otherwise trigger transition
             else {
-                this.setState({cardTransitioning: true});
+                this.setState({isCardTransitioning: true});
             }
         }
     }
 
     // When animations finish, change transition state and update characters
-    onTransitionFinish() {
+    onCardTransitionFinish() {
         this.setState({
-            cardTransitioning: false,
+            isCardTransitioning: false,
             currentCharacter: this.props.currentCharacter,
             nextCharacter: this.props.nextCharacter
         });
@@ -57,7 +65,7 @@ export default class RollPage extends React.Component {
         let skippedCards = this.props.skippedCharacters.map(this.renderCard);
 
         // Define classNames based on whether the cards are in transition state
-        let cardTransitionClass = this.state.cardTransitioning
+        let cardTransitionClass = this.state.isCardTransitioning
             ? " is-transitioning" : "";
         // If there is still a card to load in, keep a card in the background
         // for transitions
@@ -70,7 +78,7 @@ export default class RollPage extends React.Component {
 
                 <div className="rolls">
                     <div className="card-grid">
-                        <div onAnimationEnd={() => this.onTransitionFinish()}
+                        <div onAnimationEnd={() => this.onCardTransitionFinish()}
                             className={'current-card' + cardTransitionClass}>
                             {currentCard}
                         </div>
@@ -83,9 +91,9 @@ export default class RollPage extends React.Component {
                     </div>
 
                     {/* Buttons shouldn't function while animations are playing */}
-                    <button onClick={!this.state.cardTransitioning ?
+                    <button onClick={!this.state.isCardTransitioning ?
                         this.props.handleClaim : null}>Claim</button>
-                    <button onClick={!this.state.cardTransitioning ?
+                    <button onClick={!this.state.isCardTransitioning ?
                         this.props.handleSkip : null}>Skip</button>
                 </div>
 
