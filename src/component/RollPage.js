@@ -2,19 +2,13 @@ import React from 'react';
 import Card from './Card';
 import './RollPage.css';
 
-// Enum to represent different states for menu animations
-const interfaceStates = {
-    ROLLS: 'rolls',
-    SKIPS: 'skips'
-}
-
 export default class RollPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isCardTransitioning: false,
             isInterfaceTransitioning: false,
-            interfaceState: interfaceStates.ROLLS,
+            isOnSkipPage: false,
             currentCharacter: props.currentCharacter,
             nextCharacter: props.nextCharacter
         }
@@ -29,7 +23,8 @@ export default class RollPage extends React.Component {
             image={character.image}/>
     }
 
-    // When new props are given, change the state and handle animations
+    // When new props are given, change the state to update cards and handle
+    // animations
     componentDidUpdate(prevProps) {
         if (prevProps.currentCharacter !== this.props.currentCharacter) {
             // Avoid animation on first update with character info
@@ -47,12 +42,21 @@ export default class RollPage extends React.Component {
         }
     }
 
-    // When animations finish, change transition state and update characters
+    // When card animations finish, change transition state and update characters
     onCardTransitionFinish() {
         this.setState({
             isCardTransitioning: false,
             currentCharacter: this.props.currentCharacter,
             nextCharacter: this.props.nextCharacter
+        });
+    }
+
+    // When interface button is clicked, handle animation
+    handleInterfaceClick() {
+        // TODO: This should set isInterfaceTransitioning to true, to start the
+        // animation
+        this.setState({
+            isOnSkipPage: !this.state.isOnSkipPage
         });
     }
 
@@ -71,6 +75,8 @@ export default class RollPage extends React.Component {
         // for transitions
         let backgroundCardClasses = this.props.nextCharacter
             ? "card next-card" : "";
+
+        // TODO: Show rolls or skips based on interface state
         
         return (
             <div className="roll-page">
@@ -96,6 +102,9 @@ export default class RollPage extends React.Component {
                     <button onClick={!this.state.isCardTransitioning ?
                         this.props.handleSkip : null}>Skip</button>
                 </div>
+
+                <button onClick={() => this.handleInterfaceClick()}>
+                    Switch page</button>
 
                 <div className="skips">
                     {skippedCards}
