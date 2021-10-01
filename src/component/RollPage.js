@@ -114,8 +114,8 @@ export default class RollPage extends React.Component {
                     </div>
                 }
 
-                {/* TODO: Maybe should disable this button during card transition */}
-                <button onClick={() => this.handleInterfaceClick()}>
+                <button onClick={!this.state.isCardTransitioning ?
+                    () => this.handleInterfaceClick() : null}>
                     Switch page</button>
 
             </div>
