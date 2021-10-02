@@ -81,42 +81,44 @@ export default class RollPage extends React.Component {
         let interfaceTransitionClass = this.state.isInterfaceTransitioning
             ? " is-transitioning" : "";
 
-        // TODO: Probably need to keep both divs rendered at all times for animations
+        // TODO: Position divs so that they are on/off screen for animation
         
         return (
             <div className="roll-page">
                 <h1>Gacha Website</h1>
 
-                {!this.state.isOnSkipPage ?
-                    <div className="rolls">
-                        <div className="card-grid">
-                            <div onAnimationEnd={() => this.onCardTransitionFinish()}
-                                className={'current-card' + cardTransitionClass}>
-                                {currentCard}
-                            </div>
-
-                            <div className={backgroundCardClasses} />
-
-                            <div className={'next-card' + cardTransitionClass}>
-                                {nextCard}
-                            </div>
+                <div style={this.state.isOnSkipPage ? {visibility: 'hidden'}: {}}
+                    className="rolls">
+                    <div className="card-grid">
+                        <div onAnimationEnd={() => this.onCardTransitionFinish()}
+                            className={'current-card' + cardTransitionClass}>
+                            {currentCard}
                         </div>
 
-                        {/* Buttons shouldn't function while animations are playing */}
-                        <button onClick={!this.state.isCardTransitioning ?
-                            this.props.handleClaim : null}>Claim</button>
-                        <button onClick={!this.state.isCardTransitioning ?
-                            this.props.handleSkip : null}>Skip</button>
+                        <div className={backgroundCardClasses} />
+
+                        <div className={'next-card' + cardTransitionClass}>
+                            {nextCard}
+                        </div>
                     </div>
-                    :
-                    <div className="skips">
-                        {skippedCards}
-                    </div>
-                }
+
+                    {/* Buttons shouldn't function while animations are playing */}
+                    <button onClick={!this.state.isCardTransitioning ?
+                        this.props.handleClaim : null}>Claim</button>
+                    <button onClick={!this.state.isCardTransitioning ?
+                        this.props.handleSkip : null}>Skip</button>
+                </div>
 
                 <button onClick={!this.state.isCardTransitioning ?
                     () => this.handleInterfaceClick() : null}>
                     Switch page</button>
+
+                
+                <div style={!this.state.isOnSkipPage ? {visibility: 'hidden'}: {}}
+                    className="skips">
+                    {skippedCards}
+                </div>
+                
 
             </div>
         );
