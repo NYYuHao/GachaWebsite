@@ -87,7 +87,7 @@ export default class RollPage extends React.Component {
             <div className="roll-page">
                 <h1>Gacha Website</h1>
 
-                <div style={this.state.isOnSkipPage ? {visibility: 'hidden'}: {}}
+                <div style={this.state.isOnSkipPage ? {display: 'none'}: {}}
                     className="rolls">
                     <div className="card-grid">
                         <div onAnimationEnd={() => this.onCardTransitionFinish()}
@@ -114,7 +114,7 @@ export default class RollPage extends React.Component {
                     Switch page</button>
 
                 
-                <div style={!this.state.isOnSkipPage ? {visibility: 'hidden'}: {}}
+                <div style={!this.state.isOnSkipPage ? {display: 'none'}: {}}
                     className="skips">
                     {skippedCards}
                 </div>
