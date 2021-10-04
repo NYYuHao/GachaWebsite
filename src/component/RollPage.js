@@ -8,7 +8,7 @@ export default class RollPage extends React.Component {
         this.state = {
             isCardTransitioning: false,
             isInterfaceTransitioning: false,
-            isOnSkipPage: false,
+            onSkipPage: false,
             currentCharacter: props.currentCharacter,
             nextCharacter: props.nextCharacter
         }
@@ -53,10 +53,8 @@ export default class RollPage extends React.Component {
 
     // When interface button is clicked, handle animation
     handleInterfaceClick() {
-        // TODO: This should set isInterfaceTransitioning to true, to start the
-        // animation
         this.setState({
-            isOnSkipPage: !this.state.isOnSkipPage
+            isInterfaceTransitioning: true
         });
     }
 
@@ -76,7 +74,6 @@ export default class RollPage extends React.Component {
         let backgroundCardClasses = this.props.nextCharacter
             ? "card next-card" : "";
 
-
         // Define classNames for whether the user is transitioning from rolls to skips
         let interfaceTransitionClass = this.state.isInterfaceTransitioning
             ? " is-transitioning" : "";
@@ -87,17 +84,17 @@ export default class RollPage extends React.Component {
             <div className="roll-page">
                 <h1>Gacha Website</h1>
 
-                <div style={this.state.isOnSkipPage ? {display: 'none'}: {}}
-                    className="rolls">
+                <div style={this.state.onSkipPage ? {display: 'none'}: {}}
+                    className={"rolls" + interfaceTransitionClass}>
                     <div className="card-grid">
                         <div onAnimationEnd={() => this.onCardTransitionFinish()}
-                            className={'current-card' + cardTransitionClass}>
+                            className={"current-card" + cardTransitionClass}>
                             {currentCard}
                         </div>
 
                         <div className={backgroundCardClasses} />
 
-                        <div className={'next-card' + cardTransitionClass}>
+                        <div className={"next-card" + cardTransitionClass}>
                             {nextCard}
                         </div>
                     </div>
@@ -114,7 +111,7 @@ export default class RollPage extends React.Component {
                     Switch page</button>
 
                 
-                <div style={!this.state.isOnSkipPage ? {display: 'none'}: {}}
+                <div style={!this.state.onSkipPage ? {display: 'none'}: {}}
                     className="skips">
                     {skippedCards}
                 </div>
