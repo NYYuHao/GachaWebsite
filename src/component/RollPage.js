@@ -58,6 +58,14 @@ export default class RollPage extends React.Component {
         });
     }
 
+    // When interface transition animations finish, change transition and interface state
+    onInterfaceTransitionFinish() {
+        this.setState({
+            isInterfaceTransitioning: false,
+            onSkipPage: !this.state.onSkipPage
+        });
+    }
+
     render() {
         // Build card components based on props character data
         let currentCard = this.state.currentCharacter ? 
@@ -75,8 +83,12 @@ export default class RollPage extends React.Component {
             ? "card next-card" : "";
 
         // Define classNames for whether the user is transitioning from rolls to skips
-        let interfaceTransitionClass = this.state.isInterfaceTransitioning
-            ? " is-transitioning" : "";
+        let rollsTransitionClass = "";
+        let skipsTransitionClass = "";
+        if (this.state.isInterfaceTransitioning) {
+            rollsTransitionClass = this.state.onSkipPage ? " is-entering" : " is-leaving";
+            skipsTransitionClass = this.state.onSkipPage ? " is-leaving" : " is-entering";
+        }
 
         // TODO: Position divs so that they are on/off screen for animation
         
@@ -85,7 +97,9 @@ export default class RollPage extends React.Component {
                 <h1>Gacha Website</h1>
 
                 <div style={this.state.onSkipPage ? {display: 'none'}: {}}
-                    className={"rolls" + interfaceTransitionClass}>
+                    onAnimationEnd={() => this.onInterfaceTransitionFinish()}
+                    className={"rolls" + rollsTransitionClass}>
+
                     <div className="card-grid">
                         <div onAnimationEnd={() => this.onCardTransitionFinish()}
                             className={"current-card" + cardTransitionClass}>
@@ -111,8 +125,8 @@ export default class RollPage extends React.Component {
                     Switch page</button>
 
                 
-                <div style={!this.state.onSkipPage ? {display: 'none'}: {}}
-                    className="skips">
+                <div
+                    className={"skips" + skipsTransitionClass}>
                     {skippedCards}
                 </div>
                 

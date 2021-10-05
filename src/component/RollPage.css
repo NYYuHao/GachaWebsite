@@ -12,8 +12,26 @@
     100% {margin-left: -150%;}
 }
 
-.rolls.is-transitioning {
+.rolls.is-leaving {
     animation: rolls-leaving 0.5s forwards;
+}
+
+.rolls.is-entering {
+    animation: rolls-leaving 0.5s forwards reverse;
+}
+
+
+@keyframes skips-leaving {
+    0% {margin-left: 0%;}
+    100% {margin-right: 150%;}
+}
+
+.skips.is-leaving {
+    animation: skips-leaving 0.5s forwards;
+}
+
+.skips.is-entering {
+    animation: skips-leaving 0.5s forwards reverse;
 }
 
 
