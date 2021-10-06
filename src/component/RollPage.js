@@ -96,7 +96,9 @@ export default class RollPage extends React.Component {
             <div className="roll-page">
                 <h1>Gacha Website</h1>
 
-                <div style={this.state.onSkipPage ? {display: 'none'}: {}}
+                <div style={
+                        this.state.onSkipPage &&
+                        !this.state.isInterfaceTransitioning ? {display: 'none'}: {}}
                     onAnimationEnd={() => this.onInterfaceTransitionFinish()}
                     className={"rolls" + rollsTransitionClass}>
 
