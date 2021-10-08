@@ -90,7 +90,7 @@ export default class RollPage extends React.Component {
             skipsTransitionClass = this.state.onSkipPage ? " is-leaving" : " is-entering";
         }
 
-        // TODO: Position divs so that they are on/off screen for animation
+        // TODO: Style skippedCards so that it's flex
         
         return (
             <div className="roll-page">
@@ -98,7 +98,7 @@ export default class RollPage extends React.Component {
 
                 <div style={
                         this.state.onSkipPage &&
-                        !this.state.isInterfaceTransitioning ? {display: 'none'}: {}}
+                        !this.state.isInterfaceTransitioning ? {display: 'none'} : {}}
                     onAnimationEnd={() => this.onInterfaceTransitionFinish()}
                     className={"rolls" + rollsTransitionClass}>
 
@@ -128,6 +128,8 @@ export default class RollPage extends React.Component {
 
                 
                 <div
+                    style={!this.state.onSkipPage &&
+                        !this.state.isInterfaceTransitioning ? {display: 'none'} : {}}
                     className={"skips" + skipsTransitionClass}>
                     {skippedCards}
                 </div>
