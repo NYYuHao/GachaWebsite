@@ -5,6 +5,8 @@
     align-items: center;
     position: relative;
     overflow: hidden;
+    margin: auto;
+    width: 100%;
 }
 
 @keyframes rolls-leaving {
@@ -17,10 +19,12 @@
 }
 
 .rolls.is-leaving {
-    animation: rolls-leaving 0.5s forwards;
+    position: absolute;
+    animation: rolls-leaving 0.75s forwards;
 }
 .rolls.is-entering {
-    animation: rolls-entering 0.5s forwards;
+    position: absolute;
+    animation: rolls-entering 0.75s forwards;
 }
 
 
@@ -38,10 +42,12 @@
 }
 
 .skips.is-leaving {
-    animation: skips-leaving 0.5s forwards;
+    position: absolute;
+    animation: skips-leaving 0.75s forwards;
 }
 .skips.is-entering {
-    animation: skips-entering 0.5s forwards;
+    position: absolute;
+    animation: skips-entering 0.75s forwards;
 }
 
 
