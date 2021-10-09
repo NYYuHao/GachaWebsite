@@ -90,7 +90,7 @@ export default class RollPage extends React.Component {
             skipsTransitionClass = this.state.onSkipPage ? " is-leaving" : " is-entering";
         }
 
-        // TODO: Style skippedCards so that it's flex
+        // TODO: Add "Cards Remaining" maybe
         
         return (
             <div className="roll-page">
