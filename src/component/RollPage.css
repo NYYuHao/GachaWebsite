@@ -10,12 +10,12 @@
 }
 
 @keyframes rolls-leaving {
-    0% {margin-left: 0%;}
-    100% {margin-left: -150%;}
+    0% {left: 0%;}
+    100% {left: -150%;}
 }
 @keyframes rolls-entering {
-    0% {margin-left: -150%;}
-    100% {margin-left: 0%;}
+    0% {left: -150%;}
+    100% {left: 0%;}
 }
 
 .rolls.is-leaving {
@@ -37,12 +37,12 @@
 }
 
 @keyframes skips-leaving {
-    0% {margin-left: 0%;}
-    100% {margin-left: 150%;}
+    0% {left: 0%;}
+    100% {left: 150%;}
 }
 @keyframes skips-entering {
-    0% {margin-left: 150%;}
-    100% {margin-left: 0%;}
+    0% {left: 150%;}
+    100% {left: 0%;}
 }
 
 .skips.is-leaving {
@@ -69,11 +69,12 @@
 }
 
 @keyframes card-leaving {
-    0% {margin-left: 0%;}
-    100% {margin-left: 500%;}
+    0% {left: 0%;}
+    100% {left: 500%;}
 }
 
 .current-card.is-transitioning {
+    position: relative;
     animation: card-leaving 0.5s forwards;
 }
 
