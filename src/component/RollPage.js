@@ -91,9 +91,14 @@ export default class RollPage extends React.Component {
         }
 
         // TODO: Add "Cards Remaining" maybe
-        
+
+
+        // While transitioning, disallow overflow to prevent scrollbars
         return (
-            <div className="roll-page">
+            <div style={
+                    this.state.isInterfaceTransitioning ? {overflow: 'hidden'} : {}}
+                className="roll-page">
+
                 <h1>Gacha Website</h1>
 
                 <div style={

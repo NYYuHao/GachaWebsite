@@ -1,3 +1,9 @@
+.roll-page {
+    overflow: auto;
+    height: 95vh;
+    position: relative;
+}
+
 .rolls {
     display: flex;
     flex-wrap: nowrap;
