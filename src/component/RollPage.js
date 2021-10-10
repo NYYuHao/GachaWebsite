@@ -114,6 +114,9 @@ export default class RollPage extends React.Component {
                             {nextCard}
                         </div>
                     </div>
+                    <p>Cards remaining: {this.props.numberRemainingCharacters +
+                            (this.state.currentCharacter ?
+                            this.state.nextCharacter ? 2 : 1 : 0)}</p>
 
                     {/* Buttons shouldn't function while animations are playing */}
                     <button onClick={!this.state.isCardTransitioning ?
