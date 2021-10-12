@@ -94,6 +94,7 @@ export default class RollPage extends React.Component {
         }
 
         // While transitioning, disallow overflow to prevent scrollbars
+        // TODO: Fix next-card to not display when no card exists
         return (
             <div style={
                     this.state.isInterfaceTransitioning ? {overflow: 'hidden'} : {}}
@@ -116,7 +117,11 @@ export default class RollPage extends React.Component {
                         <div className={backgroundCardClasses} />
 
                         <div className={"next-card" + cardTransitionClass}>
-                            {nextCard}
+                            <div className="card card-back">
+                            </div>
+                            <div className="card-front">
+                                {nextCard}
+                            </div>
                         </div>
                     </div>
                     <p>Cards remaining: {this.props.numberRemainingCharacters +

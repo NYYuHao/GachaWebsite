@@ -107,15 +107,37 @@
     grid-column: 1 / 3;
     grid-row: 1 / 3;
     z-index: 1;
+    transform-style: preserve-3d;
+    height: 600px;
+    width: 300px;
+}
+.card-front {
+    position: absolute;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    width: 100%;
+    height: 100%;
+}
+.card-back {
+    position: absolute;
+    backface-visibility: hidden;
+    width: 100%;
+    height: 100%;
 }
 @keyframes card-entering {
     0% {
         top: 0px;
         left: 0px;
     }
+    30% {
+        top: 40px;
+        left: 40px;
+        transform: rotateY(0deg);
+    }
     100% {
         top: 40px;
         left: 40px;
+        transform: rotateY(180deg);
     }
 }
 .next-card.is-transitioning {
