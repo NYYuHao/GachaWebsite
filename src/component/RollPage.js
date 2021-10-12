@@ -86,16 +86,12 @@ export default class RollPage extends React.Component {
         // For the switch button, change its state for animations
         let rollsTransitionClass = "";
         let skipsTransitionClass = "";
-        let switchButtonTransitionClass = this.state.onSkipPage ? " on-skips" : " on-rolls";
+        let switchButtonTransitionClass = "";
         if (this.state.isInterfaceTransitioning) {
             rollsTransitionClass = this.state.onSkipPage ? " is-entering" : " is-leaving";
             skipsTransitionClass = this.state.onSkipPage ? " is-leaving" : " is-entering";
-            switchButtonTransitionClass = this.state.onSkipPage ? " on-rolls" : " on-skips";
+            switchButtonTransitionClass = this.state.onSkipPage ? " to-rolls" : " to-skips";
         }
-
-        // TODO: Add "Cards Remaining" maybe
-        // TODO: Animate switch page button
-
 
         // While transitioning, disallow overflow to prevent scrollbars
         return (
@@ -136,8 +132,11 @@ export default class RollPage extends React.Component {
 
                 <button onClick={!this.state.isCardTransitioning ?
                     () => this.handleInterfaceClick() : null}
+                    style = {this.state.onSkipPage ? 
+                        {left: "10px"} : {left: "calc(100% - 110px)"}}
                     className={"switch-button" + switchButtonTransitionClass}>
-                    Switch page</button>
+                    Switch page
+                </button>
 
                 
                 <div
