@@ -38,16 +38,16 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     position: relative;
-    width: calc(100% - 100px);
-    left: 100px;
+    width: calc(100% - 110px);
+    left: 110px;
 }
 @keyframes skips-leaving {
-    0% {left: 100px;}
+    0% {left: 110px;}
     100% {left: 150%;}
 }
 @keyframes skips-entering {
     0% {left: 150%;}
-    100% {left: 100px;}
+    100% {left: 110px;}
 }
 .skips.is-leaving {
     position: absolute;
@@ -61,16 +61,22 @@
 
 .switch-button {
     position: fixed;
-    top: 50%;
     left: calc(100% - 110px);
+    top: calc(50% - 100px);
+    border: none;
+    background: none;
+    height: 200px;
+    width: 100px;
+    font-size: 100px;
+    line-height: 100px;
 }
 @keyframes switch-to-right {
-    0% {left: 10px;}
-    100% {left: calc(100% - 110px);}
+    0% {left: 10px; transform: rotateZ(180deg);}
+    100% {left: calc(100% - 110px); transform: rotateZ(0deg);}
 }
 @keyframes switch-to-left {
-    0% {left: calc(100% - 110px);}
-    100% {left: 10px;}
+    0% {left: calc(100% - 110px); transform: rotateZ(0deg);}
+    100% {left: 10px; transform: rotateZ(180deg);}
 }
 .switch-button.to-rolls {
     animation: switch-to-right 0.75s forwards;
@@ -98,7 +104,7 @@
 }
 .current-card.is-transitioning {
     position: relative;
-    animation: card-leaving 0.5s forwards;
+    animation: card-leaving 0.6s forwards;
 }
 
 
@@ -141,5 +147,5 @@
     }
 }
 .next-card.is-transitioning {
-    animation: card-entering 0.5s forwards;
+    animation: card-entering 0.6s forwards;
 }
