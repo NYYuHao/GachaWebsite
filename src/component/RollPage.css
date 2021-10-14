@@ -40,6 +40,8 @@
     position: relative;
     width: calc(100% - 110px);
     left: 110px;
+    height: 85vh;
+    overflow-y: scroll;
 }
 @keyframes skips-leaving {
     0% {left: 110px;}
