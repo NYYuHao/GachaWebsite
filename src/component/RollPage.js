@@ -20,7 +20,8 @@ export default class RollPage extends React.Component {
             name={character.name}
             value={character.value}
             media={character.media}
-            image={character.image}/>
+            image={character.image}
+            key={character.id}/>
     }
 
     // When new props are given, change the state to update cards and handle
@@ -44,11 +45,13 @@ export default class RollPage extends React.Component {
 
     // When card animations finish, change transition state and update characters
     onCardTransitionFinish() {
-        this.setState({
-            isCardTransitioning: false,
-            currentCharacter: this.props.currentCharacter,
-            nextCharacter: this.props.nextCharacter
-        });
+        if (this.state.isCardTransitioning) {
+            this.setState({
+                isCardTransitioning: false,
+                currentCharacter: this.props.currentCharacter,
+                nextCharacter: this.props.nextCharacter
+            });
+        }
     }
 
     // When interface button is clicked, handle animation
@@ -60,10 +63,12 @@ export default class RollPage extends React.Component {
 
     // When interface transition animations finish, change transition and interface state
     onInterfaceTransitionFinish() {
-        this.setState({
-            isInterfaceTransitioning: false,
-            onSkipPage: !this.state.onSkipPage
-        });
+        if (this.state.isInterfaceTransitioning) {
+            this.setState({
+                isInterfaceTransitioning: false,
+                onSkipPage: !this.state.onSkipPage
+            });
+        }
     }
 
     render() {
@@ -116,13 +121,15 @@ export default class RollPage extends React.Component {
 
                         <div className={backgroundCardClasses} />
 
-                        <div className={"next-card" + cardTransitionClass}>
-                            <div className="card card-back">
+                        {nextCard &&
+                            <div className={"next-card" + cardTransitionClass}>
+                                <div className="card card-back">
+                                </div>
+                                <div className="card-front">
+                                    {nextCard}
+                                </div>
                             </div>
-                            <div className="card-front">
-                                {nextCard}
-                            </div>
-                        </div>
+                        }
                     </div>
                     <p>Cards remaining: {this.props.numberRemainingCharacters +
                             (this.state.currentCharacter ?

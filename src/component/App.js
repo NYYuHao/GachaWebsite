@@ -81,6 +81,7 @@ export default class App extends React.Component {
     handleClaim = () => {
         // Update the state by shifting character data
         let claimedCharacter = this.state.currentCharacter;
+        if (!claimedCharacter || Object.keys(claimedCharacter).length === 0) return;
         let rolledCharacterStack = this.state.rolledCharacterStack.slice();
         let currentCharacter = this.state.nextCharacter;
         let nextCharacter = rolledCharacterStack.pop();
@@ -104,6 +105,7 @@ export default class App extends React.Component {
     handleSkip = () => {
         // Update the state by shifting character data
         let skippedCharacter = this.state.currentCharacter;
+        if (!skippedCharacter || Object.keys(skippedCharacter).length === 0) return;
         let rolledCharacterStack = this.state.rolledCharacterStack.slice();
         let skippedCharacterStack = this.state.skippedCharacterStack.slice();
         let currentCharacter = this.state.nextCharacter;
