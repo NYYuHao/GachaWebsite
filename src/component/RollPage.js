@@ -24,6 +24,19 @@ export default class RollPage extends React.Component {
             key={character.id}/>
     }
 
+    // Given a skipped character, return a card component and an additional
+    // button to claim it
+    renderSkippedCard(character) {
+        return <div key={character.id}>
+                <Card
+                    name={character.name}
+                    value={character.value}
+                    media={character.media}
+                    image={character.image}/>
+                <button onClick={this.props.handleClaimSkipped}>Claim</button>
+            </div>
+    }
+
     // When new props are given, change the state to update cards and handle
     // animations
     componentDidUpdate(prevProps) {
@@ -45,6 +58,7 @@ export default class RollPage extends React.Component {
 
     // When card animations finish, change transition state and update characters
     onCardTransitionFinish() {
+        // Prevent animations when an irrelevant animation finishes
         if (this.state.isCardTransitioning) {
             this.setState({
                 isCardTransitioning: false,
@@ -63,6 +77,7 @@ export default class RollPage extends React.Component {
 
     // When interface transition animations finish, change transition and interface state
     onInterfaceTransitionFinish() {
+        // Prevent animations when an irrelevant animation finishes
         if (this.state.isInterfaceTransitioning) {
             this.setState({
                 isInterfaceTransitioning: false,
@@ -77,7 +92,8 @@ export default class RollPage extends React.Component {
             this.renderCard(this.state.currentCharacter) : null;
         let nextCard = this.state.nextCharacter ?
             this.renderCard(this.state.nextCharacter) : null;
-        let skippedCards = this.props.skippedCharacters.map(this.renderCard);
+        let skippedCards = this.props.skippedCharacters.map(
+            (character) => this.renderSkippedCard(character));
 
         // Define classNames based on whether the cards are in transition state
         let cardTransitionClass = this.state.isCardTransitioning
@@ -99,7 +115,6 @@ export default class RollPage extends React.Component {
         }
 
         // While transitioning, disallow overflow to prevent scrollbars
-        // TODO: Fix next-card to not display when no card exists
         return (
             <div style={
                     this.state.isInterfaceTransitioning ? {overflow: 'hidden'} : {}}
