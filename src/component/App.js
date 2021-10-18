@@ -126,13 +126,18 @@ export default class App extends React.Component {
 
     // Handle claim for skipped characters in RollPage
     handleClaimSkipped = (character) => {
-        // TODO: Remove character from skips
+        // Remove the skipped character from the list of skips
+        let skippedCharacters = this.state.skippedCharacterStack.filter(
+            (skippedcharacter) => skippedcharacter !== character);
 
         // Add the character to collection
         let collectedCharacters =
             Object.assign(this.state.collectedCharacters);
         collectedCharacters[character.id] = character;
         addCharacterToCollection(character.id);
+
+        // Update state to change skipped character
+        this.setState({skippedCharacterStack: skippedCharacters});
         
         console.log(`Claimed character: ${character.id}`);
     }
