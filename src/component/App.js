@@ -124,6 +124,19 @@ export default class App extends React.Component {
         console.log(`Skipped character: ${skippedCharacter.id}`);
     }
 
+    // Handle claim for skipped characters in RollPage
+    handleClaimSkipped = (character) => {
+        // TODO: Remove character from skips
+
+        // Add the character to collection
+        let collectedCharacters =
+            Object.assign(this.state.collectedCharacters);
+        collectedCharacters[character.id] = character;
+        addCharacterToCollection(character.id);
+        
+        console.log(`Claimed character: ${character.id}`);
+    }
+
     // Handle remove when the remove button is clicked on a card in
     // CollectionPage
     handleRemove = (character) => {
@@ -153,6 +166,7 @@ export default class App extends React.Component {
                                 numberRemainingCharacters={this.state.rolledCharacterStack.length}
                                 handleClaim={this.handleClaim}
                                 handleSkip={this.handleSkip}
+                                handleClaimSkipped={this.handleClaimSkipped}
                                 skippedCharacters={this.state.skippedCharacterStack}/>
                         </Route>
                         <Route path='/collection'>
