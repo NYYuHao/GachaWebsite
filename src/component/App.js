@@ -142,6 +142,11 @@ export default class App extends React.Component {
         console.log(`Claimed character: ${character.id}`);
     }
 
+    // Handle reroll when characters run out in RollPage
+    handleReroll = () => {
+        // TODO: Fill this out
+    }
+
     // Handle remove when the remove button is clicked on a card in
     // CollectionPage
     handleRemove = (character) => {

@@ -27,6 +27,7 @@ export default class RollPage extends React.Component {
     // Given a skipped character, return a card component and an additional
     // button to claim it
     renderSkippedCard = (character) => {
+        //TODO: Consider animations when claimed?
         return <div key={character.id}>
                 <Card
                     name={character.name}
@@ -95,6 +96,8 @@ export default class RollPage extends React.Component {
         let nextCard = this.state.nextCharacter ?
             this.renderCard(this.state.nextCharacter) : null;
         let skippedCards = this.props.skippedCharacters.map(this.renderSkippedCard);
+        // Reroll button if cards run out
+        // TODO: Define when this button should appear
 
         // Define classNames based on whether the cards are in transition state
         let cardTransitionClass = this.state.isCardTransitioning

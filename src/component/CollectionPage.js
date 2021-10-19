@@ -16,6 +16,7 @@ export default class CollectionPage extends React.Component {
 
     render() {
         // Build card components based on props character data
+        // TODO: Define sort states
         let cardsList = Object.values(this.props.characters).map(this.renderCard);
 
         return (
