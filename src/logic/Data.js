@@ -29,8 +29,9 @@ function getCollectedCharacterIds() {
 function addCharacterToCollection(id) {
     console.log("Adding character to collection");
 
-    // TODO: Maybe should check if collection already has id
-    collection.add(id);
+    if (!collection.has(id)) {
+        collection.add(id);
+    }
 }
 
 // Remove the given id from the user's collection
