@@ -60,6 +60,11 @@
     animation: skips-entering 0.75s forwards;
 }
 
+.reroll-button {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    z-index: 3;
+}
 
 .switch-button {
     position: fixed;
