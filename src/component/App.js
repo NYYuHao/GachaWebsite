@@ -145,6 +145,7 @@ export default class App extends React.Component {
     // Handle reroll when characters run out in RollPage
     handleReroll = () => {
         // TODO: Fill this out
+        console.log("Rerolling");
     }
 
     // Handle remove when the remove button is clicked on a card in
@@ -177,6 +178,7 @@ export default class App extends React.Component {
                                 handleClaim={this.handleClaim}
                                 handleSkip={this.handleSkip}
                                 handleClaimSkipped={this.handleClaimSkipped}
+                                handleReroll={this.handleReroll}
                                 skippedCharacters={this.state.skippedCharacterStack}/>
                         </Route>
                         <Route path='/collection'>

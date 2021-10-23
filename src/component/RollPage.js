@@ -98,7 +98,8 @@ export default class RollPage extends React.Component {
         let skippedCards = this.props.skippedCharacters.map(this.renderSkippedCard);
         // Reroll button if cards run out
         let rerollButton = !this.state.currentCharacter ?
-            <button className="reroll-button">Reroll</button> : null;
+            <button className="reroll-button"
+                onClick={this.props.handleReroll}>Reroll</button> : null;
 
         // Define classNames based on whether the cards are in transition state
         let cardTransitionClass = this.state.isCardTransitioning
