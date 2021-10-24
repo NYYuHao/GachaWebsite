@@ -45,7 +45,7 @@ export default class RollPage extends React.Component {
     componentDidUpdate(prevProps) {
         if (prevProps.currentCharacter !== this.props.currentCharacter) {
             // Avoid animation on first update with character info
-            if (Object.keys(prevProps.currentCharacter).length === 0) {
+            if (!prevProps.currentCharacter || Object.keys(prevProps.currentCharacter).length === 0) {
                 this.setState({
                     isCardTransitioning: false,
                     currentCharacter: this.props.currentCharacter,
