@@ -145,6 +145,7 @@ export default class App extends React.Component {
     // Handle reroll when characters run out in RollPage
     handleReroll = () => {
         this.setRollCharacters(generateCharacterIds());
+        // TODO: Consider handling animations for rerolls
         console.log("Rerolling");
     }
 
