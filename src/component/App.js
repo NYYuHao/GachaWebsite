@@ -14,8 +14,8 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentCharacter: {},
-            nextCharacter: {},
+            currentCharacter: null,
+            nextCharacter: null,
             rolledCharacterStack: [],
             skippedCharacterStack: [],
             collectedCharacters: {}
