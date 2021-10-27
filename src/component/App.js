@@ -47,6 +47,7 @@ export default class App extends React.Component {
                 id: character.id,
                 name: character.name,
                 media: character.media,
+                mediaId: character.mediaId,
                 value: character.value,
                 image: character.image,
             });});
@@ -71,6 +72,7 @@ export default class App extends React.Component {
                 id: character.id,
                 name: character.name,
                 media: character.media,
+                mediaId: character.mediaId,
                 value: character.value,
                 image: character.image
             };});

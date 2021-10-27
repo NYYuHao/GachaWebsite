@@ -14,6 +14,7 @@ function getCharacterById(id) {
                 }
                 media (perPage:1) {
                     nodes {
+                        id
                         title {
                             romaji
                         }
@@ -61,6 +62,7 @@ function getCharactersByIds(ids) {
                     }
                     media (perPage:1) {
                         nodes {
+                            id
                             title {
                                 romaji
                             }
@@ -86,5 +88,9 @@ function getCharactersByIds(ids) {
   
     return fetch(url, options).then((res) => {return res.json()});
 };
+
+function getMediaById(id) {
+    // TODO: Fill this out
+}
 
 export {getCharacterById, getCharactersByIds};

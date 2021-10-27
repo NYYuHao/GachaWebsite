@@ -9,8 +9,8 @@ export default class RollPage extends React.Component {
             isCardTransitioning: false,
             isInterfaceTransitioning: false,
             onSkipPage: false,
-            currentCharacter: null,
-            nextCharacter: null
+            currentCharacter: props.currentCharacter,
+            nextCharacter: props.nextCharacter
         }
     }
 
@@ -43,8 +43,8 @@ export default class RollPage extends React.Component {
     // When new props are given, change the state to update cards and handle
     // animations
     componentDidUpdate(prevProps) {
+        // TODO: Maybe make it so the card transition happens on page load?
         if (prevProps.currentCharacter !== this.props.currentCharacter) {
-            // On reroll, start animation
             if (!prevProps.currentCharacter) {
                 this.setState({
                     isCardTransitioning: true,
