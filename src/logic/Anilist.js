@@ -90,7 +90,50 @@ function getCharactersByIds(ids) {
 };
 
 function getMediaById(id) {
-    // TODO: Fill this out
+    let query = `
+        query ($id: Int) {
+            Media (id: $id) {
+                title {
+                    romaji
+                    english
+                    native
+                    userPreferred
+                }
+                startDate {
+                    year
+                    month
+                    day
+                }
+                endDate {
+                    year
+                    month
+                    day
+                }
+                type
+                status
+                genres
+                averageScore
+                popularity
+                source
+                id
+            }
+        }`;
+
+    var url = 'https://graphql.anilist.co',
+    options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+            query: query,
+            variables: {id: id}
+        })
+    };
+    console.log("Call to API: Media");
+
+    return fetch(url, options).then((res) => {return res.json()});
 }
 
-export {getCharacterById, getCharactersByIds};
+export {getCharacterById, getCharactersByIds, getMediaById};
