@@ -5,13 +5,17 @@ import './CollectionPage.css';
 export default class CollectionPage extends React.Component {
     // Given a character, return a card component with relevant buttons
     renderCard = (character) => {
-        return <Card 
-            name={character.name}
-            media={character.media}
-            value={character.value}
-            image={character.image}
-            key={character.name}
-            handleRemove={() => this.props.handleRemove(character)}/>
+        return <div key={character.id}>
+                <Card 
+                    name={character.name}
+                    media={character.media}
+                    value={character.value}
+                    image={character.image}
+                    key={character.name}/>
+                <button onClick={() => this.props.handleRemove(character)}>
+                    Remove
+                </button>
+            </div>
     }
 
     render() {
