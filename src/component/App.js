@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 
 import RollPage from './RollPage';
 import CollectionPage from './CollectionPage';
-import {getCharactersByIds} from '../logic/Anilist.js';
+import {getCharactersByIds, getMediaById} from '../logic/Anilist.js';
 import {generateCharacterIds, getCollectedCharacterIds,
     addCharacterToCollection, removeCharacterFromCollection,
     anilistToCharacter, saveDataToStorage} from '../logic/Data';
@@ -163,9 +163,10 @@ export default class App extends React.Component {
         console.log(`Removed character: ${character.id}`);
     }
 
-    // Handle series search when the search button is clicked on a card
-    handleSeriesSearch = (seriesid) => {
-        // TODO: Fill this out
+    // Handle media search when the search button is clicked on a card
+    handleMediaSearch = async (mediaId) => {
+        let mediaInfo = await getMediaById(mediaId);
+        console.log(mediaInfo);
     }
 
     render() {
