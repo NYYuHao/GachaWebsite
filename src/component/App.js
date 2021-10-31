@@ -163,6 +163,11 @@ export default class App extends React.Component {
         console.log(`Removed character: ${character.id}`);
     }
 
+    // Handle series search when the search button is clicked on a card
+    handleSeriesSearch = (seriesid) => {
+        // TODO: Fill this out
+    }
+
     render() {
         return (
             <Router>
