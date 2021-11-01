@@ -14,11 +14,12 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentCharacter: null,
-            nextCharacter: null,
-            rolledCharacterStack: [],
-            skippedCharacterStack: [],
-            collectedCharacters: {}
+            currentCharacter: null,         // RollPage: Current character
+            nextCharacter: null,            // RollPage: Next character
+            rolledCharacterStack: [],       // RollPage: Stack of remaining characters
+            skippedCharacterStack: [],      // RollPage: Array of skipped characters
+            collectedCharacters: {},        // CollectionPage: {id: character} pairs for all characters
+            searchMedia: null               // Object representing media for searching, null if no search active
         };
     }
 
@@ -167,6 +168,8 @@ export default class App extends React.Component {
     handleMediaSearch = async (mediaId) => {
         let mediaInfo = await getMediaById(mediaId);
         console.log(mediaInfo);
+
+        this.setState({searchMedia: mediaInfo});
     }
 
     render() {
