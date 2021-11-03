@@ -20,8 +20,10 @@ export default class RollPage extends React.Component {
             name={character.name}
             value={character.value}
             media={character.media}
+            mediaId={character.mediaId}
             image={character.image}
-            key={character.id}/>
+            key={character.id}
+            handleMediaSearch={this.props.handleMediaSearch}/>
     }
 
     // Given a skipped character, return a card component and an additional
@@ -33,7 +35,9 @@ export default class RollPage extends React.Component {
                     name={character.name}
                     value={character.value}
                     media={character.media}
-                    image={character.image}/>
+                    mediaId={character.mediaId}
+                    image={character.image}
+                    handleMediaSearch={this.props.handleMediaSearch}/>
                 <button onClick={() => this.props.handleClaimSkipped(character)}>
                     Claim
                 </button>

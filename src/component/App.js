@@ -173,6 +173,11 @@ export default class App extends React.Component {
         this.setState({searchMedia: mediaInfo});
     }
 
+    // Handle closing the search overlay when necessary
+    handleCloseSearch = () => {
+        this.setState({searchMedia: null});
+    }
+
     render() {
         return (
             <Router>
@@ -181,23 +186,25 @@ export default class App extends React.Component {
                         <Link to="/">Roll</Link>
                         <Link to="/collection">Collection</Link>
                     </div>
-                    <SearchInfo searchMedia={this.state.searchMedia} />
+                    <SearchInfo searchMedia={this.state.searchMedia}/>
                     <Switch>
                         <Route exact path='/'>
                             <RollPage
                                 currentCharacter={this.state.currentCharacter}
                                 nextCharacter={this.state.nextCharacter}
                                 numberRemainingCharacters={this.state.rolledCharacterStack.length}
+                                skippedCharacters={this.state.skippedCharacterStack}
                                 handleClaim={this.handleClaim}
                                 handleSkip={this.handleSkip}
                                 handleClaimSkipped={this.handleClaimSkipped}
                                 handleReroll={this.handleReroll}
-                                skippedCharacters={this.state.skippedCharacterStack}/>
+                                handleMediaSearch={this.handleMediaSearch}/>
                         </Route>
                         <Route path='/collection'>
                             <CollectionPage
                                 characters={this.state.collectedCharacters}
-                                handleRemove={this.handleRemove}/>
+                                handleRemove={this.handleRemove}
+                                handleMediaSearch={this.handleMediaSearch}/>
                         </Route>
                     </Switch>
                 </div>

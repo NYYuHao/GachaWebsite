@@ -6,7 +6,9 @@ export default class Card extends React.Component {
         return (
             <div className="card">
                 <h2>{this.props.name}</h2>
-                <h4>{this.props.media}</h4>
+                <h4 onClick={() => this.props.handleMediaSearch(this.props.mediaId)}>
+                    {this.props.media}
+                </h4>
                 <p>{this.props.value}</p>
                 <img src={this.props.image} alt="Character"/>
             </div>
