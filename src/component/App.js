@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 
 import RollPage from './RollPage';
 import CollectionPage from './CollectionPage';
+import SearchInfo from './SearchInfo';
 import {getCharactersByIds, getMediaById} from '../logic/Anilist.js';
 import {generateCharacterIds, getCollectedCharacterIds,
     addCharacterToCollection, removeCharacterFromCollection,
@@ -180,6 +181,7 @@ export default class App extends React.Component {
                         <Link to="/">Roll</Link>
                         <Link to="/collection">Collection</Link>
                     </div>
+                    <SearchInfo searchMedia={this.state.searchMedia} />
                     <Switch>
                         <Route exact path='/'>
                             <RollPage
