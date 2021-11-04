@@ -1,0 +1,24 @@
+.dim-overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    background: black;
+    opacity: 0.8;
+    z-index: 10;
+}
+
+.search-card {
+    position: fixed;
+    width: 700px;
+    height: 500px;
+    left: 50%;
+    top: 50%;
+    margin-left: -350px;
+    margin-top: -250px;
+    background: white;
+    opacity: 1;
+    z-index: 11;
+    padding: 10px;
+}

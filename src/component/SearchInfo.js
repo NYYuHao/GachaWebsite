@@ -4,8 +4,11 @@ import './SearchInfo.css';
 export default class SearchInfo extends React.Component {
     render() {
         if (this.props.searchMedia)
+            // TODO: Render information, handle animations
             return (
-                <div className="dim-overlay">
+                <div>
+                    <div className="dim-overlay"
+                        onClick={this.props.handleCloseSearch}/>
                     <div className="search-card">
                         Search Info
                     </div>
