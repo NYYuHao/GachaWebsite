@@ -7,7 +7,8 @@ import SearchInfo from './SearchInfo';
 import {getCharactersByIds, getMediaById} from '../logic/Anilist.js';
 import {generateCharacterIds, getCollectedCharacterIds,
     addCharacterToCollection, removeCharacterFromCollection,
-    anilistToCharacter, saveDataToStorage} from '../logic/Data';
+    anilistToCharacter, anilistToMedia, saveDataToStorage}
+    from '../logic/Data';
 import './App.css'
 
 // App with router for switching between pages
@@ -167,8 +168,8 @@ export default class App extends React.Component {
 
     // Handle media search when the search button is clicked on a card
     handleMediaSearch = async (mediaId) => {
-        let mediaInfo = await getMediaById(mediaId);
-        console.log(mediaInfo);
+        let anilistMedia = await getMediaById(mediaId);
+        let mediaInfo = anilistToMedia(anilistMedia.data.Media);
 
         this.setState({searchMedia: mediaInfo});
     }

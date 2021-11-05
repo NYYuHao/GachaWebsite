@@ -55,6 +55,14 @@ function anilistToCharacter(anilistChar) {
     };
 }
 
+// Format an Anilist media into an object for direct use
+function anilistToMedia(anilistMedia) {
+    // TODO: Fill this out with usable information
+    return {
+        id: anilistMedia.id
+    }
+}
+
 // Save collection to localstorage, to be called on page exit or at intervals
 function saveDataToStorage() {
     localStorage.collection = JSON.stringify([...collection]);
@@ -62,4 +70,4 @@ function saveDataToStorage() {
 
 export {generateCharacterIds, getCollectedCharacterIds,
     addCharacterToCollection, removeCharacterFromCollection,
-    anilistToCharacter, saveDataToStorage};
+    anilistToCharacter, anilistToMedia, saveDataToStorage};
