@@ -10,7 +10,9 @@ export default class SearchInfo extends React.Component {
                     <div className="dim-overlay"
                         onClick={this.props.handleCloseSearch}/>
                     <div className="search-card">
-                        Search Info
+                        <p>{this.props.searchMedia.title}</p>
+                        <p>Start Date: {this.props.searchMedia.startDate}</p>
+                        <p>End Date: {this.props.searchMedia.endDate}</p>
                     </div>
                 </div>
             );
