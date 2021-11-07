@@ -17,11 +17,7 @@ export default class RollPage extends React.Component {
     // Given a character, return a card component
     renderCard = (character) => {
         return <Card 
-            name={character.name}
-            value={character.value}
-            media={character.media}
-            mediaId={character.mediaId}
-            image={character.image}
+            character={character}
             key={character.id}
             handleMediaSearch={this.props.handleMediaSearch}/>
     }
@@ -32,11 +28,7 @@ export default class RollPage extends React.Component {
         //TODO: Consider animations when claimed?
         return <div key={character.id}>
                 <Card
-                    name={character.name}
-                    value={character.value}
-                    media={character.media}
-                    mediaId={character.mediaId}
-                    image={character.image}
+                    character={character}
                     handleMediaSearch={this.props.handleMediaSearch}/>
                 <button onClick={() => this.props.handleClaimSkipped(character)}>
                     Claim

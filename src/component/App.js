@@ -188,7 +188,7 @@ export default class App extends React.Component {
                         <Link to="/collection">Collection</Link>
                     </div>
                     <SearchInfo
-                        searchMedia={this.state.searchMedia}
+                        media={this.state.searchMedia}
                         handleCloseSearch={this.handleCloseSearch}/>
                     <Switch>
                         <Route exact path='/'>

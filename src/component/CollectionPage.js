@@ -7,13 +7,9 @@ export default class CollectionPage extends React.Component {
     renderCard = (character) => {
         return <div key={character.id}>
                 <Card 
-                    name={character.name}
-                    media={character.media}
-                    mediaId={character.mediaId}
-                    value={character.value}
-                    image={character.image}
+                    character={character}
                     handleMediaSearch={this.props.handleMediaSearch}
-                    key={character.name}/>
+                    key={character.id}/>
                 <button onClick={() => this.props.handleRemove(character)}>
                     Remove
                 </button>

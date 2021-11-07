@@ -116,6 +116,9 @@ function getMediaById(id) {
                 popularity
                 source
                 id
+                coverImage {
+                    large
+                }
             }
         }`;
 

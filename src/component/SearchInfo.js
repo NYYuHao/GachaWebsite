@@ -3,16 +3,17 @@ import './SearchInfo.css';
 
 export default class SearchInfo extends React.Component {
     render() {
-        if (this.props.searchMedia)
+        if (this.props.media)
             // TODO: Render information, handle animations
             return (
                 <div>
                     <div className="dim-overlay"
                         onClick={this.props.handleCloseSearch}/>
                     <div className="search-card">
-                        <p>{this.props.searchMedia.title}</p>
-                        <p>Start Date: {this.props.searchMedia.startDate}</p>
-                        <p>End Date: {this.props.searchMedia.endDate}</p>
+                        <img src={this.props.media.image} alt="Media"/>
+                        <p>{this.props.media.title}</p>
+                        <p>Start Date: {this.props.media.startDate}</p>
+                        <p>End Date: {this.props.media.endDate}</p>
                     </div>
                 </div>
             );

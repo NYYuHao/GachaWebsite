@@ -68,6 +68,7 @@ function anilistToMedia(anilistMedia) {
     // TODO: Fill this out with usable information
     return {
         id: anilistMedia.id,
+        image: anilistMedia.coverImage.large,
         title: anilistMedia.title.romaji,
         startDate: startDate,
         endDate: endDate
