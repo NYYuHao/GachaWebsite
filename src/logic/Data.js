@@ -70,6 +70,8 @@ function anilistToMedia(anilistMedia) {
         id: anilistMedia.id,
         image: anilistMedia.coverImage.large,
         title: anilistMedia.title.romaji,
+        type: anilistMedia.type,
+        genres: anilistMedia.genres,
         startDate: startDate,
         endDate: endDate
     }
