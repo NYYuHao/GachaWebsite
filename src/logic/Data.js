@@ -72,8 +72,10 @@ function anilistToMedia(anilistMedia) {
         title: anilistMedia.title.romaji,
         type: anilistMedia.type,
         genres: anilistMedia.genres,
+        averageScore: anilistMedia.averageScore,
         startDate: startDate,
-        endDate: endDate
+        endDate: endDate,
+        source: anilistMedia.source
     }
 }
 

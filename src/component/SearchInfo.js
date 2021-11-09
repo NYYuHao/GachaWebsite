@@ -16,8 +16,10 @@ export default class SearchInfo extends React.Component {
                         <p>{this.props.media.title}</p>
                         <p>{this.props.media.type}</p>
                         <p>Genres: {genres}</p>
+                        <p>Score: {this.props.media.averageScore}</p>
                         <p>Start Date: {this.props.media.startDate}</p>
                         <p>End Date: {this.props.media.endDate}</p>
+                        <p>Source: {this.props.media.source}</p>
                     </div>
                 </div>
             );
