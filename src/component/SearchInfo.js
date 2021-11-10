@@ -2,6 +2,17 @@ import React from 'react';
 import './SearchInfo.css';
 
 export default class SearchInfo extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isTransitioning: false
+        };
+    }
+
+    componentDidUpdate(prevProps) {
+        
+    }
+
     render() {
         if (this.props.media) {
             let genres = this.props.media.genres.join(", ");
