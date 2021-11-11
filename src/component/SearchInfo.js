@@ -10,7 +10,13 @@ export default class SearchInfo extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        
+        if (prevProps.media !== this.props.media) {
+            this.setState({isTransitioning: true});
+        }
+    }
+
+    onTransitionFinish() {
+        this.setState({isTransitioning: false});
     }
 
     render() {
