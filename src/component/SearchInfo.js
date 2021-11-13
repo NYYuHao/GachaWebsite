@@ -20,15 +20,21 @@ export default class SearchInfo extends React.Component {
     }
 
     render() {
+        // Define animation class names for the overlay
+        let searchOverlayTransitionClass = "";
+        if (this.state.isTransitioning) {
+            searchOverlayTransitionClass = this.props.media ? " is-leaving" : " is-entering"
+        }
+
         if (this.props.media) {
             let genres = this.props.media.genres.join(", ");
 
             // TODO: Render information, handle animations
             return (
                 <div>
-                    <div className="dim-overlay"
+                    <div className={"dim-overlay" + searchOverlayTransitionClass}
                         onClick={this.props.handleCloseSearch}/>
-                    <div className="search-card">
+                    <div className={"search-card" + searchOverlayTransitionClass}>
                         <img src={this.props.media.image} alt="Media"/>
                         <p>{this.props.media.title}</p>
                         <p>{this.props.media.type}</p>
