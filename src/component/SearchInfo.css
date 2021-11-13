@@ -9,6 +9,22 @@
     z-index: 10;
 }
 
+@keyframes dim-leaving {
+    0% {opacity: 0.8;}
+    100% {opacity: 0;}
+}
+@keyframes dim-entering {
+    0% {opacity: 0;}
+    100% {opacity: 0.8;}
+}
+.dim-overlay.is-leaving {
+    animation: dim-leaving 0.4s forwards;
+}
+.dim-overlay.is-entering {
+    animation: dim-entering 0.4s forwards;
+}
+
+
 .search-card {
     position: fixed;
     width: 700px;
@@ -22,4 +38,19 @@
     z-index: 11;
     padding: 10px;
     overflow: auto;
+}
+
+@keyframes search-leaving {
+    0% {top: 50%;}
+    100% {top: -50%;}
+}
+@keyframes search-entering {
+    0% {top: -50%;}
+    100% {top: 50%;}
+}
+.search-card.is-leaving {
+    animation: search-leaving 0.4s forwards;
+}
+.search-card.is-entering {
+    animation: search-entering 0.4s forwards;
 }
