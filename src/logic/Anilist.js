@@ -99,6 +99,7 @@ function getMediaById(id) {
                     native
                     userPreferred
                 }
+                description
                 startDate {
                     year
                     month

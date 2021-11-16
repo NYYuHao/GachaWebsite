@@ -50,14 +50,19 @@ export default class SearchInfo extends React.Component {
                     <div className={"dim-overlay" + searchOverlayTransitionClass}
                         onClick={!this.state.isTransitioning ? this.props.handleCloseSearch : null}/>
                     <div className={"search-card" + searchOverlayTransitionClass}>
-                        <img src={this.state.media.image} alt="Media"/>
-                        <p>{this.state.media.title}</p>
-                        <p>{this.state.media.type}</p>
-                        <p>Genres: {genres}</p>
-                        <p>Score: {this.state.media.averageScore}</p>
-                        <p>Start Date: {this.state.media.startDate}</p>
-                        <p>End Date: {this.state.media.endDate}</p>
-                        <p>Source: {this.state.media.source}</p>
+                        <div className="left-bar">
+                            <img src={this.state.media.image} alt="Media"/>
+                            <p>{this.state.media.title}</p>
+                        </div>
+                        <div className="main-info">
+                            <p>{this.state.media.description}</p>
+                            <p>{this.state.media.type}</p>
+                            <p>Genres: {genres}</p>
+                            <p>Score: {this.state.media.averageScore}</p>
+                            <p>Start Date: {this.state.media.startDate}</p>
+                            <p>End Date: {this.state.media.endDate}</p>
+                            <p>Source: {this.state.media.source}</p>
+                        </div>
                     </div>
                 </div>
             );

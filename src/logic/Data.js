@@ -57,7 +57,6 @@ function anilistToCharacter(anilistChar) {
 
 // Format an Anilist media into an object for direct use
 function anilistToMedia(anilistMedia) {
-    console.log(anilistMedia);
     let startDate = new Date(Date.UTC(
         anilistMedia.startDate.year, anilistMedia.startDate.month-1, anilistMedia.startDate.day+1
     )).toLocaleDateString();
@@ -70,6 +69,7 @@ function anilistToMedia(anilistMedia) {
         id: anilistMedia.id,
         image: anilistMedia.coverImage.large,
         title: anilistMedia.title.romaji,
+        description: anilistMedia.description,
         type: anilistMedia.type,
         genres: anilistMedia.genres,
         averageScore: anilistMedia.averageScore,
