@@ -38,6 +38,8 @@
     z-index: 11;
     padding: 10px;
     overflow: auto;
+    display: flex;
+    gap: 50px;
 }
 
 @keyframes search-leaving {
