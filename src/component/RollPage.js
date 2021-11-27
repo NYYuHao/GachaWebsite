@@ -140,8 +140,8 @@ export default class RollPage extends React.Component {
                         <div className={backgroundCardClasses} />
 
                         {nextCard &&
-                            <div className={"next-card" + cardTransitionClass}>
-                                <div className="card card-back">
+                            <div className={"card next-card" + cardTransitionClass}>
+                                <div className="card-back">
                                 </div>
                                 <div className="card-front">
                                     {nextCard}
