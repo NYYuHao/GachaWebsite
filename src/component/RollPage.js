@@ -115,6 +115,7 @@ export default class RollPage extends React.Component {
             switchButtonTransitionClass = this.state.onSkipPage ? " to-rolls" : " to-skips";
         }
 
+        // TODO: Figure out how to handle css card back issue
         // While transitioning, disallow overflow to prevent scrollbars
         return (
             <div style={

@@ -1,3 +1,7 @@
+body {
+    font-family: arial;
+}   
+
 .navbar {
     max-width: 1000px;
     margin: auto;
