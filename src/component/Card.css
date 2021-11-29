@@ -13,8 +13,8 @@
 }
 .card img {
     width: 33.3vw;
-    height: auto;
-    overflow: cover;
+    height: 53.3vw;
+    object-fit: cover;
     border: 1px solid black;
 }
 
@@ -28,6 +28,7 @@
     }
     .card img {
         width: 250px;
+        height: 400px;
     }
 }
 
