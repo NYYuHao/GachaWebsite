@@ -59,6 +59,11 @@
     position: absolute;
     animation: skips-entering 0.75s forwards;
 }
+.skipped-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .reroll-button {
     grid-column: 2 / 3;
