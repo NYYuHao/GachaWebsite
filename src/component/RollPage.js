@@ -154,10 +154,12 @@ export default class RollPage extends React.Component {
                             this.state.nextCharacter ? 2 : 1 : 0)}</p>
 
                     {/* Buttons shouldn't function while animations are playing */}
-                    <button onClick={!this.state.isCardTransitioning ?
-                        this.props.handleClaim : null}>Claim</button>
-                    <button onClick={!this.state.isCardTransitioning ?
-                        this.props.handleSkip : null}>Skip</button>
+                    <div className="roll-buttons">
+                        <button onClick={!this.state.isCardTransitioning ?
+                            this.props.handleClaim : null}>Claim</button>
+                        <button onClick={!this.state.isCardTransitioning ?
+                            this.props.handleSkip : null}>Skip</button>
+                    </div>
                 </div>
 
                 <button onClick={!this.state.isCardTransitioning ?
