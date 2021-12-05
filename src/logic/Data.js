@@ -1,7 +1,7 @@
 // Might want to make this connect to a database
 // For now, just use localStorage
-var collection = localStorage.collection ?
-    new Set(JSON.parse(localStorage.collection)) : new Set();
+var collectionData = localStorage.collection ?
+    JSON.parse(localStorage.collection) : {};
 
 // Generate array of random character IDs for RollPage keeping track of what
 // has been rolled
@@ -12,25 +12,25 @@ function generateCharacterIds() {
     let idArray = [];
     while (idArray.length < 15) {
         let id = Math.floor(Math.random() * 229946);
-        if (!collection.has(id))
+        if (!collectionData.hasOwnProperty(id))
             idArray.push(id)
     }
     return idArray;
 }
 
 
-// Get the characters IDs that have already been collected
+// Get the character IDs that have already been collected
 function getCollectedCharacterIds() {
     console.log("Getting collected characters");
-    return Array.from(collection);
+    return Object.keys(collectionData);
 }
 
 // Add the given id to the user's collection (stored in localStorage)
 function addCharacterToCollection(id) {
     console.log("Adding character to collection");
 
-    if (!collection.has(id)) {
-        collection.add(id);
+    if (!collectionData.hasOwnProperty(id)) {
+        collectionData[id] = {data: {dateObtained: new Date()}};
     }
 }
 
@@ -38,11 +38,15 @@ function addCharacterToCollection(id) {
 function removeCharacterFromCollection(id) {
     console.log("Removing character from collection");
 
-    collection.delete(id);
+    delete collectionData[id];
 }
 
 // Format an Anilist character into an object for direct use
 function anilistToCharacter(anilistChar) {
+    // If the character was already obtained, provide the date
+    let dateObtained = collectionData[anilistChar.id] ?
+        collectionData[anilistChar.id].data.dateObtained : null;
+
     return {
         id: anilistChar.id,
         name: anilistChar.name.full,
@@ -51,7 +55,8 @@ function anilistToCharacter(anilistChar) {
         mediaId: anilistChar.media.nodes[0] ?
             anilistChar.media.nodes[0].id : null,
         value: anilistChar.favourites,
-        image: anilistChar.image.large
+        image: anilistChar.image.large,
+        dateObtained: dateObtained
     };
 }
 
@@ -64,7 +69,6 @@ function anilistToMedia(anilistMedia) {
         anilistMedia.endDate.year, anilistMedia.endDate.month-1, anilistMedia.endDate.day+1
     )).toLocaleDateString();
 
-    // TODO: Fill this out with usable information
     return {
         id: anilistMedia.id,
         image: anilistMedia.coverImage.large,
@@ -81,7 +85,7 @@ function anilistToMedia(anilistMedia) {
 
 // Save collection to localstorage, to be called on page exit or at intervals
 function saveDataToStorage() {
-    localStorage.collection = JSON.stringify([...collection]);
+    localStorage.collection = JSON.stringify(collectionData);
 }
 
 export {generateCharacterIds, getCollectedCharacterIds,
