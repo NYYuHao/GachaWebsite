@@ -77,7 +77,8 @@ export default class App extends React.Component {
                 media: character.media,
                 mediaId: character.mediaId,
                 value: character.value,
-                image: character.image
+                image: character.image,
+                dateObtained: character.dateObtained
             };});
         this.setState({collectedCharacters: collectedState});
     }

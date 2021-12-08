@@ -43,7 +43,8 @@ function removeCharacterFromCollection(id) {
 
 // Format an Anilist character into an object for direct use
 function anilistToCharacter(anilistChar) {
-    // If the character was already obtained, provide the date
+    // If the character was already obtained,
+    // provide the date for sorting purposes
     let dateObtained = collectionData[anilistChar.id] ?
         collectionData[anilistChar.id].data.dateObtained : null;
 

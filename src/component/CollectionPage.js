@@ -3,6 +3,13 @@ import Card from './Card';
 import './CollectionPage.css';
 
 export default class CollectionPage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            sortMethod: 'dateObtained'
+        }
+    }
+
     // Given a character, return a card component with relevant buttons
     renderCard = (character) => {
         return <div className="collected-card" key={character.id}>
@@ -19,7 +26,17 @@ export default class CollectionPage extends React.Component {
     render() {
         // Build card components based on props character data
         // TODO: Define sort states
-        let cardsList = Object.values(this.props.characters).map(this.renderCard);
+        let cardsList;
+        switch (this.state.sortMethod) {
+            case 'dateObtained':
+                console.log('test');
+                cardsList = Object.values(this.props.characters).sort((char1, char2) =>
+                    char1.dateObtained < char2.dateObtained).map(this.renderCard);
+                break;
+            default:
+                cardsList = Object.values(this.props.characters).map(this.renderCard);
+                break;
+        }
 
         return (
             <div className="collection-page">
