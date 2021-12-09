@@ -66,6 +66,7 @@ export default class App extends React.Component {
         // Get the character data returned by Anilist
         let charactersData = await getCharactersByIds(ids);
 
+        // TODO: Ensure that more than 50 characters can be pulled
         // Update the state by mapping all returned characters to expected
         // array format
         let collectedState = {};
@@ -93,15 +94,17 @@ export default class App extends React.Component {
         let nextCharacter = rolledCharacterStack.pop();
 
         // Add the character to collection
-        let collectedCharacters =
-            Object.assign(this.state.collectedCharacters);
-        collectedCharacters[claimedCharacter.id] = claimedCharacter;
+        let collectedCharacters = {...this.state.collectedCharacters};
+        collectedCharacters[claimedCharacter.id] = {
+            ...claimedCharacter, dateObtained: new Date()
+        };
         addCharacterToCollection(claimedCharacter.id);
 
         this.setState({
             rolledCharacterStack: rolledCharacterStack,
             currentCharacter: currentCharacter,
-            nextCharacter: nextCharacter
+            nextCharacter: nextCharacter,
+            collectedCharacters: collectedCharacters
         });
 
         console.log(`Claimed character: ${claimedCharacter.id}`);
@@ -137,13 +140,17 @@ export default class App extends React.Component {
             (skippedcharacter) => skippedcharacter !== character);
 
         // Add the character to collection
-        let collectedCharacters =
-            Object.assign(this.state.collectedCharacters);
-        collectedCharacters[character.id] = character;
+        let collectedCharacters = {...this.state.collectedCharacters};
+        collectedCharacters[character.id] = {
+            ...character, dateObtained: new Date()
+        };
         addCharacterToCollection(character.id);
 
         // Update state to change skipped character
-        this.setState({skippedCharacterStack: skippedCharacters});
+        this.setState({
+            skippedCharacterStack: skippedCharacters,
+            collectedCharacters: collectedCharacters
+        });
         
         console.log(`Claimed character: ${character.id}`);
     }
@@ -187,6 +194,7 @@ export default class App extends React.Component {
                     <div className="navbar">
                         <Link to="/">Roll</Link>
                         <Link to="/collection">Collection</Link>
+                        <a onClick={saveDataToStorage}>Save</a>
                     </div>
                     <SearchInfo
                         media={this.state.searchMedia}

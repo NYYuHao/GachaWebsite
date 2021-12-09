@@ -86,6 +86,7 @@ function anilistToMedia(anilistMedia) {
 
 // Save collection to localstorage, to be called on page exit or at intervals
 function saveDataToStorage() {
+    console.log("Saving to storage");
     localStorage.collection = JSON.stringify(collectionData);
 }
 

@@ -29,7 +29,6 @@ export default class CollectionPage extends React.Component {
         let cardsList;
         switch (this.state.sortMethod) {
             case 'dateObtained':
-                console.log('test');
                 cardsList = Object.values(this.props.characters).sort((char1, char2) =>
                     char1.dateObtained < char2.dateObtained).map(this.renderCard);
                 break;
