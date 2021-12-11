@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 
+// Fetches character information for the given id
 function getCharacterById(id) {
     let query = `
         query ($id: Int) {
@@ -40,7 +41,9 @@ function getCharacterById(id) {
     return fetch(url, options).then((res) => {return res.json()});
 };
 
-function getCharactersByIds(ids) {
+// Fetches character information for the given ids
+// Optionally takes pageNum as a value, otherwise default 1
+function getCharactersByIds(ids, pageNum = 1) {
     let query = `
         query ($id_in:[Int], $page:Int, $perPage:Int) {
 	        Page(page:$page, perPage:$perPage) {
@@ -81,7 +84,7 @@ function getCharactersByIds(ids) {
         },
         body: JSON.stringify({
             query: query,
-            variables: {id_in: ids, page: 1, perPage: 50}
+            variables: {id_in: ids, page: pageNum, perPage: 50}
         })
     };
     console.log("Call to API: Page");

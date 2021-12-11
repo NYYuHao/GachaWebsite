@@ -63,24 +63,33 @@ export default class App extends React.Component {
 
     // Set the state to contain characters already in the collection
     async setCollectedCharacters(ids) {
-        // Get the character data returned by Anilist
-        let charactersData = await getCharactersByIds(ids);
-
-        // TODO: Ensure that more than 50 characters can be pulled
-        // Update the state by mapping all returned characters to expected
-        // array format
         let collectedState = {};
-        charactersData.data.Page.characters.forEach((anilistChar) => {
-            let character = anilistToCharacter(anilistChar);
-            collectedState[character.id] = {
-                id: character.id,
-                name: character.name,
-                media: character.media,
-                mediaId: character.mediaId,
-                value: character.value,
-                image: character.image,
-                dateObtained: character.dateObtained
-            };});
+        let hasNextPage = true;
+        let pageNum = 1;
+
+        // Loop in order to get all the pages
+        while (hasNextPage) {
+            // Get the character data returned by Anilist
+            let charactersData = await getCharactersByIds(ids, pageNum);
+
+            // Update the state by mapping all returned characters to expected
+            // array format
+            charactersData.data.Page.characters.forEach((anilistChar) => {
+                let character = anilistToCharacter(anilistChar);
+                collectedState[character.id] = {
+                    id: character.id,
+                    name: character.name,
+                    media: character.media,
+                    mediaId: character.mediaId,
+                    value: character.value,
+                    image: character.image,
+                    dateObtained: character.dateObtained
+                };});
+
+            hasNextPage = charactersData.data.Page.pageInfo.hasNextPage;
+            pageNum += 1;
+        }
+
         this.setState({collectedCharacters: collectedState});
     }
 
