@@ -27,10 +27,11 @@ export default class CollectionPage extends React.Component {
         // Build card components based on props character data
         // TODO: Define sort states
         let cardsList;
+        console.log(this.props.characters);
         switch (this.state.sortMethod) {
             case 'dateObtained':
                 cardsList = Object.values(this.props.characters).sort((char1, char2) =>
-                    char1.dateObtained < char2.dateObtained).map(this.renderCard);
+                    Date.parse(char1.dateObtained) < Date.parse(char2.dateObtained)).map(this.renderCard);
                 break;
             default:
                 cardsList = Object.values(this.props.characters).map(this.renderCard);
