@@ -15,11 +15,16 @@
     align-items: center;
 }
 
+
+.sort-button {
+    width: 200px;
+    height: 100px;
+}
 .sort-options {
     display: none;
     position: absolute;
 }
-
 .sort-button:hover .sort-options {
     display: block;
+    background: white;
 }
