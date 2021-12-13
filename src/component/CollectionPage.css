@@ -16,15 +16,28 @@
 }
 
 
-.sort-button {
-    width: 200px;
-    height: 100px;
+.sort-container {
+    width: 100px;
+    height: 50px;
+    text-align: center;
 }
-.sort-options {
+.sort-button {
+    width: 100px;
+    height: 50px;
+    color: white;
+    background: #33b0ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sort-menu {
     display: none;
     position: absolute;
 }
-.sort-button:hover .sort-options {
+.sort-container:hover .sort-menu {
     display: block;
     background: white;
+}
+.sort-button.option {
+    background: #80ccff;
 }
