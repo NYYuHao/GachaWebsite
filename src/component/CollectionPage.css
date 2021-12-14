@@ -22,13 +22,12 @@
     text-align: center;
 }
 .sort-button {
-    width: 100px;
-    height: 50px;
     color: white;
     background: #33b0ff;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0px;
 }
 .sort-menu {
     display: none;
@@ -40,4 +39,8 @@
 }
 .sort-button.option {
     background: #80ccff;
+}
+
+.option:hover {
+    background: #4db8ff;
 }

@@ -42,22 +42,22 @@ export default class CollectionPage extends React.Component {
             <div className="collection-page">
                 <h1>Collection</h1>
                 <div className="sort-container">
-                    <div className="sort-button">
+                    <button className="sort-button">
                         <p>Sort</p>
-                    </div>
+                    </button>
                     <div className="sort-menu">
-                        <div className="sort-button option">
+                        <button className="sort-button option">
                             <p>Date</p>
-                        </div>
-                        <div className="sort-button option">
+                        </button>
+                        <button className="sort-button option">
                             <p>Name</p>
-                        </div>
-                        <div className="sort-button option">
+                        </button>
+                        <button className="sort-button option">
                             <p>Series</p>
-                        </div>
-                        <div className="sort-button option">
+                        </button>
+                        <button className="sort-button option">
                             <p>Value</p>
-                        </div>
+                        </button>
                     </div>
                 </div>
                 <div className="collection">

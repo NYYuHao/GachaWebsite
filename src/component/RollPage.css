@@ -78,10 +78,10 @@
     border: none;
     color: black;
     background: none;
-    height: 200px;
-    width: 100px;
-    font-size: 100px;
-    line-height: 100px;
+    height: 26.6vw;
+    width: 13.3vw;
+    font-size: 13.3vw;
+    line-height: 13.3vw;
 }
 .switch-button:hover {
     background: none;
@@ -163,6 +163,14 @@
 }
 
 @media (min-width: 750px) {
+    .switch-button {
+        left: calc(100% - 110px);
+        top: calc(50% - 100px);
+        height: 200px;
+        width: 100px;
+        font-size: 100px;
+        line-height: 100px;
+    }
     .card-grid {
         display: grid;
         grid-template-columns: 40px 300px 40px;
