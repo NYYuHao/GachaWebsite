@@ -26,12 +26,17 @@ export default class CollectionPage extends React.Component {
     render() {
         // Build card components based on props character data
         // TODO: Define sort states
+        // TODO: Create functions for setting sort state and sorting cards
         let cardsList;
         console.log(this.props.characters);
         switch (this.state.sortMethod) {
             case 'dateObtained':
                 cardsList = Object.values(this.props.characters).sort((char1, char2) =>
                     Date.parse(char1.dateObtained) < Date.parse(char2.dateObtained)).map(this.renderCard);
+                break;
+            case 'name':
+                cardsList = Object.values(this.props.characters).sort((char1, char2) =>
+                    char1.name < char2.name).map(this.renderCard);
                 break;
             default:
                 cardsList = Object.values(this.props.characters).map(this.renderCard);
@@ -46,16 +51,20 @@ export default class CollectionPage extends React.Component {
                         <p>Sort</p>
                     </button>
                     <div className="sort-menu">
-                        <button className="sort-button option">
+                        <button className="sort-button option"
+                            onClick={() => this.setState({sortMethod: 'dateObtained'})}>
                             <p>Date</p>
                         </button>
-                        <button className="sort-button option">
+                        <button className="sort-button option"
+                            onClick={() => this.setState({sortMethod: 'name'})}>
                             <p>Name</p>
                         </button>
-                        <button className="sort-button option">
+                        <button className="sort-button option"
+                            onClick={() => this.setState({sortMethod: 'series'})}>
                             <p>Series</p>
                         </button>
-                        <button className="sort-button option">
+                        <button className="sort-button option"
+                            onClick={() => this.setState({sortMethod: 'value'})}>
                             <p>Value</p>
                         </button>
                     </div>
