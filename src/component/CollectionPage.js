@@ -6,7 +6,8 @@ export default class CollectionPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            sortMethod: 'dateObtained'
+            sortMethod: 'dateObtained',
+            sortAscending: true
         }
     }
 
@@ -23,25 +24,45 @@ export default class CollectionPage extends React.Component {
             </div>
     }
 
+    // Compare function for sorting
+    compareFields(arg1, arg2) {
+        if (arg1 > arg2) return 1;
+        if (arg1 == arg2) return 0;
+        return -1;
+    }
+
+    // Change sort method depending on current state
+    changeSortMethod(method) {
+        // Change sort order if the same method was chosen
+        // Otherwise change method and set order to ascending
+        if (this.state.sortMethod === method) {
+            this.setState({sortAscending: !this.state.sortAscending});
+        }
+        else {
+            this.setState({sortMethod: method, sortAscending: true});
+        }
+    }
+
     render() {
         // Build card components based on props character data
-        // TODO: Define sort states
-        // TODO: Create functions for setting sort state and sorting cards
         let cardsList;
-        console.log(this.props.characters);
+
+        // Sort based on selection
         switch (this.state.sortMethod) {
             case 'dateObtained':
                 cardsList = Object.values(this.props.characters).sort((char1, char2) =>
-                    Date.parse(char1.dateObtained) < Date.parse(char2.dateObtained)).map(this.renderCard);
+                    this.compareFields(Date.parse(char1.dateObtained), Date.parse(char2.dateObtained))).map(this.renderCard);
                 break;
             case 'name':
                 cardsList = Object.values(this.props.characters).sort((char1, char2) =>
-                    char1.name < char2.name).map(this.renderCard);
+                    this.compareFields(char1.name, char2.name)).map(this.renderCard);
                 break;
             default:
                 cardsList = Object.values(this.props.characters).map(this.renderCard);
                 break;
         }
+        // Change order if necessary
+        if (!this.state.sortAscending) cardsList.reverse();
 
         return (
             <div className="collection-page">
@@ -52,19 +73,19 @@ export default class CollectionPage extends React.Component {
                     </button>
                     <div className="sort-menu">
                         <button className="sort-button option"
-                            onClick={() => this.setState({sortMethod: 'dateObtained'})}>
+                            onClick={() => this.changeSortMethod('dateObtained')}>
                             <p>Date</p>
                         </button>
                         <button className="sort-button option"
-                            onClick={() => this.setState({sortMethod: 'name'})}>
+                            onClick={() => this.changeSortMethod('name')}>
                             <p>Name</p>
                         </button>
                         <button className="sort-button option"
-                            onClick={() => this.setState({sortMethod: 'series'})}>
+                            onClick={() => this.changeSortMethod('series')}>
                             <p>Series</p>
                         </button>
                         <button className="sort-button option"
-                            onClick={() => this.setState({sortMethod: 'value'})}>
+                            onClick={() => this.changeSortMethod('value')}>
                             <p>Value</p>
                         </button>
                     </div>
