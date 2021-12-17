@@ -74,7 +74,7 @@ export default class CollectionPage extends React.Component {
                     <div className="sort-menu">
                         <button className="sort-button option"
                             onClick={() => this.changeSortMethod('dateObtained')}>
-                            <p>Date</p>
+                            <p>Date Obtained</p>
                         </button>
                         <button className="sort-button option"
                             onClick={() => this.changeSortMethod('name')}>
