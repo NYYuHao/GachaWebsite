@@ -25,9 +25,11 @@
     color: white;
     background: #33b0ff;
     display: flex;
+    flex-flow: column wrap;
     justify-content: center;
     align-items: center;
     margin: 0px;
+    text-align: center;
 }
 .sort-menu {
     display: none;
