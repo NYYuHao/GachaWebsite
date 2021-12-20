@@ -24,12 +24,20 @@
 .sort-button {
     color: white;
     background: #33b0ff;
+    width: 150px;
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
     margin: 0px;
     text-align: center;
+}
+.sort-button-text {
+    width: 60%;
+    padding: 5%;
+}
+.sort-button-arrow {
+    width: 30%;
 }
 .sort-menu {
     display: none;
