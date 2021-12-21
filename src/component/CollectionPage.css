@@ -38,6 +38,7 @@
 }
 .sort-button-arrow {
     width: 30%;
+    font-size: 20px;
 }
 .sort-menu {
     display: none;

@@ -6,7 +6,7 @@ export default class CollectionPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            sortMethod: 'dateObtained',
+            sortMethod: 'Date Obtained',
             sortAscending: true
         }
     }
@@ -22,6 +22,22 @@ export default class CollectionPage extends React.Component {
                     Remove
                 </button>
             </div>
+    }
+
+    // Returns a sort button based on the given sortMethod
+    renderSortButton(methodName) {
+        // Arrow components for sorting
+        let arrowComponent = this.state.sortAscending ? 
+            <p className="sort-button-arrow">↑</p> :
+            <p className="sort-button-arrow">↓</p>;
+        let emptyArrowComponent = <p className="sort-button-arrow"></p>;
+
+        return <button className="sort-button option"
+                onClick={() => this.changeSortMethod(methodName)}>
+                <p className="sort-button-text">{methodName}</p>
+                {this.state.sortMethod == methodName ?
+                    arrowComponent : emptyArrowComponent}
+            </button>
     }
 
     // Compare helper function for sorting
@@ -49,20 +65,20 @@ export default class CollectionPage extends React.Component {
 
         // Sort based on selection
         switch (this.state.sortMethod) {
-            case 'dateObtained':
+            case 'Date Obtained':
                 cardsList.sort((char1, char2) =>
                     this.compareFields(Date.parse(char1.dateObtained),
                         Date.parse(char2.dateObtained)));
                 break;
-            case 'name':
+            case 'Name':
                 cardsList.sort((char1, char2) =>
                     this.compareFields(char1.name, char2.name));
                 break;
-            case 'media':
+            case 'Media':
                 cardsList.sort((char1, char2) =>
                     this.compareFields(char1.media, char2.media));
                 break;
-            case 'value':
+            case 'Value':
                 cardsList.sort((char1, char2) =>
                     this.compareFields(char1.value, char2.value));
                 break;
@@ -71,7 +87,6 @@ export default class CollectionPage extends React.Component {
         }
         // Change order if necessary
         if (!this.state.sortAscending) cardsList.reverse();
-        
         let cardComponentsList = cardsList.map(this.renderCard);
 
         return (
@@ -82,26 +97,10 @@ export default class CollectionPage extends React.Component {
                         <p>Sort</p>
                     </button>
                     <div className="sort-menu">
-                        <button className="sort-button option"
-                            onClick={() => this.changeSortMethod('dateObtained')}>
-                            <p className="sort-button-text">Date Obtained</p>
-                            <p className="sort-button-arrow">↑</p>
-                        </button>
-                        <button className="sort-button option"
-                            onClick={() => this.changeSortMethod('name')}>
-                            <p className="sort-button-text">Name</p>
-                            <p className="sort-button-arrow">↓</p>
-                        </button>
-                        <button className="sort-button option"
-                            onClick={() => this.changeSortMethod('media')}>
-                            <p className="sort-button-text">Media</p>
-                            <p className="sort-button-arrow">↓</p>
-                        </button>
-                        <button className="sort-button option"
-                            onClick={() => this.changeSortMethod('value')}>
-                            <p className="sort-button-text">Value</p>
-                            <p className="sort-button-arrow">↓</p>
-                        </button>
+                        {this.renderSortButton('Date Obtained')}
+                        {this.renderSortButton('Name')}
+                        {this.renderSortButton('Media')}
+                        {this.renderSortButton('Value')}
                     </div>
                 </div>
                 <div className="collection">
