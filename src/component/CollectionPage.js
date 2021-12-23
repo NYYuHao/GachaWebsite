@@ -35,7 +35,7 @@ export default class CollectionPage extends React.Component {
         return <button className="sort-button option"
                 onClick={() => this.changeSortMethod(methodName)}>
                 <p className="sort-button-text">{methodName}</p>
-                {this.state.sortMethod == methodName ?
+                {this.state.sortMethod === methodName ?
                     arrowComponent : emptyArrowComponent}
             </button>
     }
