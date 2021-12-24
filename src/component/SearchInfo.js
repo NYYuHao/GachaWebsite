@@ -50,7 +50,7 @@ export default class SearchInfo extends React.Component {
                     <div className={"search-card" + searchOverlayTransitionClass}>
                         <div className="left-bar">
                             <img src={this.state.media.image} alt="Media"/>
-                            <p>{this.state.media.title}</p>
+                            <h2>{this.state.media.title}</h2>
                             <p>{this.state.media.type}</p>
                             <p>Genres: {genres}</p>
                             <p>Start Date: {this.state.media.startDate}</p>
