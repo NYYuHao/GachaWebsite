@@ -92,16 +92,19 @@ export default class CollectionPage extends React.Component {
         return (
             <div className="collection-page">
                 <h1>Collection</h1>
-                <div className="sort-container">
-                    <button className="sort-button">
-                        <p>Sort</p>
-                    </button>
-                    <div className="sort-menu">
-                        {this.renderSortButton('Date Obtained')}
-                        {this.renderSortButton('Name')}
-                        {this.renderSortButton('Media')}
-                        {this.renderSortButton('Value')}
+                <div className="option-buttons">
+                    <div className="sort-container">
+                        <button className="sort-button">
+                            <p>Sort</p>
+                        </button>
+                        <div className="sort-menu">
+                            {this.renderSortButton('Date Obtained')}
+                            {this.renderSortButton('Name')}
+                            {this.renderSortButton('Media')}
+                            {this.renderSortButton('Value')}
+                        </div>
                     </div>
+                    <input type="text" id="search-form" className="search-form" placeholder="Search"/>
                 </div>
                 <div className="collection">
                     {cardComponentsList}

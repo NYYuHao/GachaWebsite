@@ -16,11 +16,16 @@
 }
 
 
+.option-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .sort-container {
     width: 150px;
     height: 50px;
     text-align: center;
-    margin: 20px;
 }
 .sort-button {
     color: white;
@@ -51,6 +56,11 @@
 }
 .sort-button.option {
     background: #80ccff;
+}
+
+.search-form {
+    height: inherit;
+    font-size: 15px;
 }
 
 .option:hover {
