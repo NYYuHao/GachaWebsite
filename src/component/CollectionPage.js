@@ -7,7 +7,8 @@ export default class CollectionPage extends React.Component {
         super(props);
         this.state = {
             sortMethod: 'Date Obtained',
-            sortAscending: true
+            sortAscending: true,
+            searchResults: null
         }
     }
 
@@ -59,35 +60,54 @@ export default class CollectionPage extends React.Component {
         }
     }
 
+    // Update searchResults whenever something is typed in the search bar
+    handleSearch = (event) => {
+        if (event.target.value) {
+            let charactersList = Object.values(this.props.characters);
+            let searchList = charactersList.filter((character) => {
+                let name = character.name.toLowerCase();
+                let media = character.media.toLowerCase();
+                let query = event.target.value.toLowerCase();
+                return name.includes(query) || character.media.includes(query)
+            });
+            this.setState({searchResults: searchList});
+        }
+        else {
+            this.setState({searchResults: null});
+        }
+    }
+
     render() {
         // Build card components based on props character data
-        let cardsList = Object.values(this.props.characters);
+        // If a search was done, use those characters instead
+        let charactersList = this.state.searchResults ?
+            this.state.searchResults : Object.values(this.props.characters);
 
         // Sort based on selection
         switch (this.state.sortMethod) {
             case 'Date Obtained':
-                cardsList.sort((char1, char2) =>
+                charactersList.sort((char1, char2) =>
                     this.compareFields(Date.parse(char1.dateObtained),
                         Date.parse(char2.dateObtained)));
                 break;
             case 'Name':
-                cardsList.sort((char1, char2) =>
+                charactersList.sort((char1, char2) =>
                     this.compareFields(char1.name, char2.name));
                 break;
             case 'Media':
-                cardsList.sort((char1, char2) =>
+                charactersList.sort((char1, char2) =>
                     this.compareFields(char1.media, char2.media));
                 break;
             case 'Value':
-                cardsList.sort((char1, char2) =>
+                charactersList.sort((char1, char2) =>
                     this.compareFields(char1.value, char2.value));
                 break;
             default:
                 break;
         }
         // Change order if necessary
-        if (!this.state.sortAscending) cardsList.reverse();
-        let cardComponentsList = cardsList.map(this.renderCard);
+        if (!this.state.sortAscending) charactersList.reverse();
+        let cardsList = charactersList.map(this.renderCard);
 
         return (
             <div className="collection-page">
@@ -95,7 +115,7 @@ export default class CollectionPage extends React.Component {
                 <div className="option-buttons">
                     <div className="sort-container">
                         <button className="sort-button">
-                            <p>Sort</p>
+                            Sort
                         </button>
                         <div className="sort-menu">
                             {this.renderSortButton('Date Obtained')}
@@ -104,10 +124,15 @@ export default class CollectionPage extends React.Component {
                             {this.renderSortButton('Value')}
                         </div>
                     </div>
-                    <input type="text" id="search-form" className="search-form" placeholder="Search"/>
+                    <input type="text" id="search-form"
+                        className="search-form" placeholder="Search"
+                        onChange={this.handleSearch}/>
+                    <button onClick={() => {document.getElementById('search-form').value = ''}}>
+                        Clear
+                    </button>
                 </div>
                 <div className="collection">
-                    {cardComponentsList}
+                    {cardsList}
                 </div>
             </div>
         );

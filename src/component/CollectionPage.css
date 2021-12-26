@@ -28,8 +28,6 @@
     text-align: center;
 }
 .sort-button {
-    color: white;
-    background: #33b0ff;
     width: 150px;
     display: flex;
     flex-flow: column wrap;
