@@ -84,6 +84,7 @@ export default class RollPage extends React.Component {
         }
     }
 
+    // TODO: Switch page button is hard to click on mobile sizes
     render() {
         // Build card components based on props character data
         let currentCard = this.state.currentCharacter ? 

@@ -9,7 +9,7 @@ export default class CollectionPage extends React.Component {
             sortMethod: 'Date Obtained',
             sortAscending: true,
             searchResults: null,
-            pageNum: 1
+            pageNum: 0
         }
     }
 
@@ -71,14 +71,36 @@ export default class CollectionPage extends React.Component {
                 let query = event.target.value.toLowerCase();
                 return name.includes(query) || media.includes(query)
             });
-            this.setState({searchResults: searchList});
+            this.setState({searchResults: searchList, pageNum: 0});
         }
         else {
-            this.setState({searchResults: null});
+            this.setState({searchResults: null, pageNum: 0});
         }
     }
 
-    // TODO: Add paging
+    // Change the page of cards that is currently being displayed
+    // based on the button pressed
+    changePage = (event) => {
+        let oldPage = this.state.pageNum;
+        let newPage;
+        let numPages = this.state.searchResults ?
+            Math.floor(this.state.searchResults.length / 20) + 1 :
+            Math.floor(Object.values(this.props.characters).length / 20) + 1;
+        if (numPages === 0) return;
+
+        // Going above or below page limit should circle around
+        if (event.target.innerText === '<') {
+            newPage = ((oldPage - 1) + numPages) % numPages;
+        }
+        else if (event.target.innerText === '>') {
+            newPage = ((oldPage + 1) + numPages) % numPages;
+        }
+
+        this.setState({pageNum: newPage});
+    }
+
+    // TODO: Reconsider sending characters as an object
+    // Or maybe add characters to the state
     render() {
         // Build card components based on props character data
         // If a search was done, use those characters instead
@@ -107,6 +129,9 @@ export default class CollectionPage extends React.Component {
             default:
                 break;
         }
+        // Only render enough cards to fit a page
+        charactersList = charactersList.slice(this.state.pageNum*20, (this.state.pageNum+1)*20);
+
         // Change order if necessary
         if (!this.state.sortAscending) charactersList.reverse();
         let cardsList = charactersList.map(this.renderCard);
@@ -134,13 +159,20 @@ export default class CollectionPage extends React.Component {
                         </button>
                     </div>
                     <div className="page-settings">
-                        <button>&lt;</button>
-                        <span>{this.state.pageNum}</span>
-                        <button>&gt;</button>
+                        <button onClick={this.changePage}>&lt;</button>
+                        <span>{this.state.pageNum + 1}</span>
+                        <button onClick={this.changePage}>&gt;</button>
                     </div>
                 </div>
                 <div className="collection">
                     {cardsList}
+                </div>
+                <div className="option-bar">
+                    <div className="page-settings">
+                        <button onClick={this.changePage}>&lt;</button>
+                        <span>{this.state.pageNum + 1}</span>
+                        <button onClick={this.changePage}>&gt;</button>
+                    </div>
                 </div>
             </div>
         );
