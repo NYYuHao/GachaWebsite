@@ -16,10 +16,11 @@
 }
 
 
-.option-buttons {
+.option-bar {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-flow: wrap;
 }
 
 .sort-container {
@@ -56,10 +57,19 @@
     background: #80ccff;
 }
 
-.search-form {
-    height: inherit;
-    font-size: 15px;
+.page-settings {
+    margin: auto;
+    margin-right: 10px;
 }
+.page-settings > * {
+    width: 50px;
+}
+.page-settings span {
+    display: inline-block;
+    text-align: center;
+}
+
+
 
 .option:hover {
     background: #4db8ff;

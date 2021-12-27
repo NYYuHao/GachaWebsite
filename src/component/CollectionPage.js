@@ -8,7 +8,8 @@ export default class CollectionPage extends React.Component {
         this.state = {
             sortMethod: 'Date Obtained',
             sortAscending: true,
-            searchResults: null
+            searchResults: null,
+            pageNum: 1
         }
     }
 
@@ -68,7 +69,7 @@ export default class CollectionPage extends React.Component {
                 let name = character.name.toLowerCase();
                 let media = character.media.toLowerCase();
                 let query = event.target.value.toLowerCase();
-                return name.includes(query) || character.media.includes(query)
+                return name.includes(query) || media.includes(query)
             });
             this.setState({searchResults: searchList});
         }
@@ -77,6 +78,7 @@ export default class CollectionPage extends React.Component {
         }
     }
 
+    // TODO: Add paging
     render() {
         // Build card components based on props character data
         // If a search was done, use those characters instead
@@ -112,7 +114,7 @@ export default class CollectionPage extends React.Component {
         return (
             <div className="collection-page">
                 <h1>Collection</h1>
-                <div className="option-buttons">
+                <div className="option-bar">
                     <div className="sort-container">
                         <button className="sort-button">
                             Sort
@@ -124,12 +126,18 @@ export default class CollectionPage extends React.Component {
                             {this.renderSortButton('Value')}
                         </div>
                     </div>
-                    <input type="text" id="search-form"
-                        className="search-form" placeholder="Search"
-                        onChange={this.handleSearch}/>
-                    <button onClick={() => {document.getElementById('search-form').value = ''}}>
-                        Clear
-                    </button>
+                    <div className="search-form">
+                        <input type="text" id="search-form"
+                            placeholder="Search" onChange={this.handleSearch}/>
+                        <button onClick={() => {document.getElementById('search-form').value = ''}}>
+                            Clear
+                        </button>
+                    </div>
+                    <div className="page-settings">
+                        <button>&lt;</button>
+                        <span>{this.state.pageNum}</span>
+                        <button>&gt;</button>
+                    </div>
                 </div>
                 <div className="collection">
                     {cardsList}
