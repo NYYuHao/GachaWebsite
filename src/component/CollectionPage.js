@@ -64,7 +64,7 @@ export default class CollectionPage extends React.Component {
     // Update searchResults whenever something is typed in the search bar
     handleSearch = (event) => {
         if (event.target.value) {
-            let charactersList = Object.values(this.props.characters);
+            let charactersList = this.props.characters;
             let searchList = charactersList.filter((character) => {
                 let name = character.name.toLowerCase();
                 let media = character.media.toLowerCase();
@@ -85,7 +85,7 @@ export default class CollectionPage extends React.Component {
         let newPage;
         let numPages = this.state.searchResults ?
             Math.floor(this.state.searchResults.length / 20) + 1 :
-            Math.floor(Object.values(this.props.characters).length / 20) + 1;
+            Math.floor(this.props.characters.length / 20) + 1;
         if (numPages === 0) return;
 
         // Going above or below page limit should circle around
@@ -105,7 +105,7 @@ export default class CollectionPage extends React.Component {
         // Build card components based on props character data
         // If a search was done, use those characters instead
         let charactersList = this.state.searchResults ?
-            this.state.searchResults : Object.values(this.props.characters);
+            this.state.searchResults : this.props.characters;
 
         // Sort based on selection
         switch (this.state.sortMethod) {

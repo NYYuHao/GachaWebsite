@@ -223,7 +223,7 @@ export default class App extends React.Component {
                         </Route>
                         <Route path='/collection'>
                             <CollectionPage
-                                characters={this.state.collectedCharacters}
+                                characters={Object.values(this.state.collectedCharacters)}
                                 handleRemove={this.handleRemove}
                                 handleMediaSearch={this.handleMediaSearch}/>
                         </Route>
