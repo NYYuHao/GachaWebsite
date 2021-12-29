@@ -10,12 +10,13 @@ export default class Card extends React.Component {
     }
     render() {
         return (
-            <div className="card"
-                onClick={() => this.props.handleMediaSearch(this.props.character.mediaId)}>
+            <div className="card">
                 <h2>{this.props.character.name}</h2>
                 <h4>{this.props.character.media}</h4>
                 <p>{this.props.character.value}</p>
-                <img src={this.props.character.image} alt="Character"/>
+                <img
+                    onClick={() => this.props.handleMediaSearch(this.props.character.mediaId)}
+                    src={this.props.character.image} alt="Character"/>
             </div>
         );
     };

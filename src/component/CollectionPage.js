@@ -99,8 +99,6 @@ export default class CollectionPage extends React.Component {
         this.setState({pageNum: newPage});
     }
 
-    // TODO: Reconsider sending characters as an object
-    // Or maybe add characters to the state
     render() {
         // Build card components based on props character data
         // If a search was done, use those characters instead
