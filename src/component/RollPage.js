@@ -165,11 +165,9 @@ export default class RollPage extends React.Component {
 
                 <button onClick={!this.state.isCardTransitioning ?
                     () => this.handleInterfaceClick() : null}
-                    style = {this.state.onSkipPage ? 
-                        {left: "1.3vw", transform: "rotateZ(180deg)"} : 
-                        {left: "calc(100% - 20vw)"}}
-                    className={"switch-button" + switchButtonTransitionClass}>
-                    >
+                    className={"switch-button" + (this.state.onSkipPage ? " left" : " right") +
+                        switchButtonTransitionClass}>
+                    &gt;
                 </button>
 
                 

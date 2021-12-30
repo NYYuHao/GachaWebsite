@@ -86,6 +86,13 @@
 .switch-button:hover {
     background: none;
 }
+.switch-button.left {
+    left: 1.3vw;
+    transform: rotateZ(180deg)
+}
+.switch-button.right {
+    left: calc(100% - 20vw)
+}
 @keyframes switch-to-right {
     0% {left: 1.3vw; transform: rotateZ(180deg);}
     100% {left: calc(100% - 20vw); transform: rotateZ(0deg);}
@@ -162,16 +169,30 @@
     animation: card-entering 0.6s forwards;
 }
 
-/* TODO: Need to add different css rules for animations */
 @media (min-width: 750px) {
     .switch-button {
-        left: calc(100% - 110px);
+        left: calc(100% - 150px);
         top: calc(50% - 100px);
         height: 200px;
         width: 100px;
         font-size: 100px;
         line-height: 100px;
     }
+    .switch-button.left {
+        left: 10px;
+    }
+    .switch-button.right {
+        left: calc(100% - 150px)
+    }
+    @keyframes switch-to-right {
+        0% {left: 10px; transform: rotateZ(180deg);}
+        100% {left: calc(100% - 150px); transform: rotateZ(0deg);}
+    }
+    @keyframes switch-to-left {
+        0% {left: calc(100% - 150px); transform: rotateZ(0deg);}
+        100% {left: 10px; transform: rotateZ(180deg);}
+    }
+
     .card-grid {
         display: grid;
         grid-template-columns: 40px 300px 40px;
