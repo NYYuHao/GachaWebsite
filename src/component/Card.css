@@ -1,4 +1,3 @@
-/* TODO: Consider different font size ideas */
 .card {
     display: flex;
     flex-direction: column;
@@ -48,3 +47,9 @@
     }
 }
 
+/* Container used by other components for adding buttons */
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

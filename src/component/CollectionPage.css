@@ -9,12 +9,6 @@
     margin: auto;
 }
 
-.collected-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 
 .option-bar {
     display: flex;
@@ -23,6 +17,7 @@
     flex-flow: wrap;
 }
 
+/* Dropdown menu for sorting */
 .sort-container {
     width: 150px;
     height: 50px;
@@ -56,7 +51,11 @@
 .sort-button.option {
     background: #80ccff;
 }
+.option:hover {
+    background: #4db8ff;
+}
 
+/* Buttons for switching pages in collection */
 .page-settings {
     margin: auto;
     margin-right: 10px;
@@ -67,10 +66,4 @@
 .page-settings span {
     display: inline-block;
     text-align: center;
-}
-
-
-
-.option:hover {
-    background: #4db8ff;
 }

@@ -15,7 +15,7 @@ export default class CollectionPage extends React.Component {
 
     // Given a character, return a card component with relevant buttons
     renderCard = (character) => {
-        return <div className="collected-card" key={character.id}>
+        return <div className="card-container" key={character.id}>
                 <Card 
                     character={character}
                     handleMediaSearch={this.props.handleMediaSearch}

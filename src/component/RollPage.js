@@ -26,7 +26,7 @@ export default class RollPage extends React.Component {
     // button to claim it
     renderSkippedCard = (character) => {
         //TODO: Consider animations when claimed?
-        return <div className="skipped-card" key={character.id}>
+        return <div className="card-container" key={character.id}>
                 <Card
                     character={character}
                     handleMediaSearch={this.props.handleMediaSearch}/>
