@@ -65,10 +65,10 @@ export default class CollectionPage extends React.Component {
     handleSearch = (event) => {
         if (event.target.value) {
             let charactersList = this.props.characters;
+            let query = event.target.value.toLowerCase();
             let searchList = charactersList.filter((character) => {
                 let name = character.name.toLowerCase();
                 let media = character.media.toLowerCase();
-                let query = event.target.value.toLowerCase();
                 return name.includes(query) || media.includes(query)
             });
             this.setState({searchResults: searchList, pageNum: 0});
@@ -76,6 +76,14 @@ export default class CollectionPage extends React.Component {
         else {
             this.setState({searchResults: null, pageNum: 0});
         }
+    }
+
+    // Clear the current search query
+    handleClearSearch() {
+        let searchInput = document.getElementById('search-form');
+        searchInput.value = '';
+        searchInput.dispatchEvent(new Event('input', {bubbles: true}));
+
     }
 
     // Change the page of cards that is currently being displayed
@@ -151,8 +159,8 @@ export default class CollectionPage extends React.Component {
                     </div>
                     <div className="search-form">
                         <input type="text" id="search-form"
-                            placeholder="Search" onChange={this.handleSearch}/>
-                        <button onClick={() => {document.getElementById('search-form').value = ''}}>
+                            placeholder="Search" onInput={this.handleSearch}/>
+                        <button onClick={this.handleClearSearch}>
                             Clear
                         </button>
                     </div>
