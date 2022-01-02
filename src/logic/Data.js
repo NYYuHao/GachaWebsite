@@ -9,13 +9,13 @@ var collectionData = localStorage.collection ?
 // Some IDs seem to be missing (e.g. 8, 9, 10)
 function generateCharacterIds() {
     console.log("Generating characters");
-    let idArray = [];
-    while (idArray.length < 15) {
+    let idSet = new Set();
+    while (idSet.size < 100) {
         let id = Math.floor(Math.random() * 229946);
-        if (!collectionData.hasOwnProperty(id))
-            idArray.push(id)
+        if (!idSet.has(id) && !collectionData.hasOwnProperty(id))
+            idSet.add(id)
     }
-    return idArray;
+    return Array.from(idSet);
 }
 
 

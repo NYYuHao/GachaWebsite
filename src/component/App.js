@@ -19,6 +19,7 @@ export default class App extends React.Component {
             currentCharacter: null,         // RollPage: Current character
             nextCharacter: null,            // RollPage: Next character
             rolledCharacterStack: [],       // RollPage: Stack of remaining characters
+            rolledCharacterBuffer: [],      // RollPage: Buffer characters to reduce API calls, invisible to user
             skippedCharacterStack: [],      // RollPage: Array of skipped characters
             collectedCharacters: {},        // CollectionPage: {id: character} pairs for all characters
             searchMedia: null               // Object representing media for searching, null if no search active
@@ -36,6 +37,7 @@ export default class App extends React.Component {
         });
     }
 
+    // TODO: Implement buffer to reduce API calls
     // Set the state to contain the randomly generated characters for rolling
     async setRollCharacters(ids) {
         // Get the character data returned by Anilist
