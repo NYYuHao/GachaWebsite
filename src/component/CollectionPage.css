@@ -15,6 +15,7 @@
     align-items: center;
     gap: 10px;
     flex-flow: wrap;
+    margin: 10px;
 }
 
 /* Dropdown menu for sorting */

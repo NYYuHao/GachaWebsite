@@ -37,16 +37,24 @@ export default class App extends React.Component {
         });
     }
 
-    // TODO: Implement buffer to reduce API calls
     // Set the state to contain the randomly generated characters for rolling
     async setRollCharacters(ids) {
         // Get the character data returned by Anilist
-        let charactersData = await getCharactersByIds(ids);
+        // Use the buffer if available in order to reduce API calls
+        let characterBuffer = [...this.state.rolledCharacterBuffer];
+        // TODO: Make filling buffer asynchronous
+        while (characterBuffer.length < 20) {
+            let charactersData = await getCharactersByIds(ids);
+            characterBuffer = characterBuffer.concat(charactersData.data.Page.characters);
+        }
+        let characters = characterBuffer.slice(0, 10);
+        characterBuffer = characterBuffer.slice(10);
+
 
         // Update the state by mapping all returned characters to expected
         // array format
         let rollStack = [];
-        charactersData.data.Page.characters.forEach((anilistChar) => {
+        characters.forEach((anilistChar) => {
             let character = anilistToCharacter(anilistChar);
             rollStack.push({
                 id: character.id,
@@ -59,7 +67,8 @@ export default class App extends React.Component {
         this.setState({
             currentCharacter: rollStack.pop(),
             nextCharacter: rollStack.pop(),
-            rolledCharacterStack: rollStack
+            rolledCharacterStack: rollStack,
+            rolledCharacterBuffer: characterBuffer
         });
     }
 
