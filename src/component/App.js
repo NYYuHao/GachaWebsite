@@ -37,16 +37,29 @@ export default class App extends React.Component {
         });
     }
 
+    // Asynchronously update the roll buffer with the provided IDs
+    updateRollBuffer = async (ids) => {
+        // TODO: Consider mutex or similar to prevent this function from
+        // running multiple times
+        let characterBuffer = [...this.state.rolledCharacterBuffer];
+        let newCharacters = await getCharactersByIds(ids);
+        characterBuffer = characterBuffer.concat(newCharacters.data.Page.characters);
+        console.log(characterBuffer);
+        this.setState({rolledCharacterBuffer: characterBuffer});
+    }
+
     // Set the state to contain the randomly generated characters for rolling
     async setRollCharacters(ids) {
         // Get the character data returned by Anilist
-        // Use the buffer if available in order to reduce API calls
-        let characterBuffer = [...this.state.rolledCharacterBuffer];
-        // TODO: Make filling buffer asynchronous
-        while (characterBuffer.length < 20) {
-            let charactersData = await getCharactersByIds(ids);
-            characterBuffer = characterBuffer.concat(charactersData.data.Page.characters);
+        // Update the roll buffer if necessary,
+        // waiting if no characters are available
+        if (this.state.rolledCharacterBuffer.length === 0) {
+            await this.updateRollBuffer(ids);
         }
+        else if (this.state.rolledCharacterBuffer.length < 20) {
+            this.updateRollBuffer(ids);
+        }
+        let characterBuffer = [...this.state.rolledCharacterBuffer];
         let characters = characterBuffer.slice(0, 10);
         characterBuffer = characterBuffer.slice(10);
 
