@@ -170,7 +170,7 @@ export default class App extends React.Component {
     handleClaimSkipped = (character) => {
         // Remove the skipped character from the list of skips
         let skippedCharacters = this.state.skippedCharacterStack.filter(
-            (skippedcharacter) => skippedcharacter !== character);
+            (skippedCharacter) => skippedCharacter !== character);
 
         // Add the character to collection
         let collectedCharacters = {...this.state.collectedCharacters};
@@ -179,13 +179,28 @@ export default class App extends React.Component {
         };
         addCharacterToCollection(character.id);
 
-        // Update state to change skipped character
+        // Update state to change skipped characters
         this.setState({
             skippedCharacterStack: skippedCharacters,
             collectedCharacters: collectedCharacters
         });
         
         console.log(`Claimed character: ${character.id}`);
+    }
+
+    // Handle remove for skipped characters in RollPage
+    handleRemoveSkipped = (character) => {
+        // TODO: Add the value of skipped characters to some kind of currency?
+
+        // Remove the skipped character from the list of skips
+        let skippedCharacters = this.state.skippedCharacterStack.filter(
+            (skippedCharacter) => skippedCharacter !== character);
+        
+        // Update state to change skipped characters
+        this.setState({
+            skippedCharacterStack: skippedCharacters
+        });
+        console.log(`Removed character: ${character.id}`);
     }
 
     // Handle reroll when characters run out in RollPage
@@ -227,7 +242,7 @@ export default class App extends React.Component {
                     <div className="navbar">
                         <Link to="/">Roll</Link>
                         <Link to="/collection">Collection</Link>
-                        <a onClick={saveDataToStorage}>Save</a>
+                        <Link onClick={saveDataToStorage}>Save</Link>
                     </div>
                     <SearchInfo
                         media={this.state.searchMedia}
@@ -242,6 +257,7 @@ export default class App extends React.Component {
                                 handleClaim={this.handleClaim}
                                 handleSkip={this.handleSkip}
                                 handleClaimSkipped={this.handleClaimSkipped}
+                                handleRemoveSkipped={this.handleRemoveSkipped}
                                 handleReroll={this.handleReroll}
                                 handleMediaSearch={this.handleMediaSearch}/>
                         </Route>

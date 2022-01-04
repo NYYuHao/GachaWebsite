@@ -30,9 +30,14 @@ export default class RollPage extends React.Component {
                 <Card
                     character={character}
                     handleMediaSearch={this.props.handleMediaSearch}/>
-                <button onClick={() => this.props.handleClaimSkipped(character)}>
-                    Claim
-                </button>
+                <div className="card-buttons">
+                    <button onClick={() => this.props.handleClaimSkipped(character)}>
+                        Claim
+                    </button>
+                    <button onClick={() => this.props.handleRemoveSkipped(character)}>
+                        Remove
+                    </button>
+                </div>
             </div>
     }
 

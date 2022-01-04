@@ -20,9 +20,11 @@ export default class CollectionPage extends React.Component {
                     character={character}
                     handleMediaSearch={this.props.handleMediaSearch}
                     key={character.id}/>
-                <button onClick={() => this.props.handleRemove(character)}>
-                    Remove
-                </button>
+                <div className="card-buttons">
+                    <button onClick={() => this.props.handleRemove(character)}>
+                        Remove
+                    </button>
+                </div>
             </div>
     }
 
