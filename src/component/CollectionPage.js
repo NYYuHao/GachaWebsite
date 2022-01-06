@@ -91,11 +91,16 @@ export default class CollectionPage extends React.Component {
     // Handle remove all by passing only the characters that the user can
     // currently see
     handleRemoveAll = () => {
-        if (this.state.searchResults) {
-            this.props.handleRemoveAllCollected(this.state.searchResults);
-        }
-        else {
-            this.props.handleRemoveAllCollected(this.props.characters);
+        if (window.confirm("Remove all characters shown from collection?")) {
+            if (this.state.searchResults) {
+                this.props.handleRemoveAllCollected(this.state.searchResults);
+
+                // Clear the search prompt
+                this.handleClearSearch();
+            }
+            else {
+                this.props.handleRemoveAllCollected(this.props.characters);
+            }
         }
     }
 
