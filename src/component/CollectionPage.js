@@ -81,11 +81,22 @@ export default class CollectionPage extends React.Component {
     }
 
     // Clear the current search query
-    handleClearSearch() {
+    handleClearSearch = () => {
         let searchInput = document.getElementById('search-form');
         searchInput.value = '';
         searchInput.dispatchEvent(new Event('input', {bubbles: true}));
 
+    }
+
+    // Handle remove all by passing only the characters that the user can
+    // currently see
+    handleRemoveAll = () => {
+        if (this.state.searchResults) {
+            this.props.handleRemoveAllCollected(this.state.searchResults);
+        }
+        else {
+            this.props.handleRemoveAllCollected(this.props.characters);
+        }
     }
 
     // Change the page of cards that is currently being displayed
@@ -168,7 +179,7 @@ export default class CollectionPage extends React.Component {
                         </button>
                     </div>
                     <div className="remove-all-button">
-                        <button>
+                        <button onClick={this.handleRemoveAll}>
                             Remove All
                         </button>
                     </div>
