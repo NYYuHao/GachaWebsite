@@ -109,6 +109,7 @@ export default class CollectionPage extends React.Component {
         this.setState({pageNum: newPage});
     }
 
+    // TODO: Add remove all feature for only those characters that show in collection page
     render() {
         // Build card components based on props character data
         // If a search was done, use those characters instead
@@ -164,6 +165,11 @@ export default class CollectionPage extends React.Component {
                             placeholder="Search" onInput={this.handleSearch}/>
                         <button onClick={this.handleClearSearch}>
                             Clear
+                        </button>
+                    </div>
+                    <div className="remove-all-button">
+                        <button>
+                            Remove All
                         </button>
                     </div>
                     <div className="page-settings">

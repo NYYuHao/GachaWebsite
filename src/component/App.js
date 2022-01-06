@@ -211,7 +211,7 @@ export default class App extends React.Component {
 
     // Handle remove when the remove button is clicked on a card in
     // CollectionPage
-    handleRemove = (character) => {
+    handleRemoveCollected = (character) => {
         removeCharacterFromCollection(character.id);
 
         let collectedState = Object.assign(this.state.collectedCharacters);
@@ -220,6 +220,20 @@ export default class App extends React.Component {
         this.setState({collectedCharacters: collectedState});
 
         console.log(`Removed character: ${character.id}`);
+    }
+
+    // Handle remove all when the remove all button is clicked in
+    // CollectionPage
+    handleRemoveAllCollected = (characters) => {
+        let collectedState = Object.assign(this.state.collectedCharacters);
+
+        characters.forEach((character) => {
+            removeCharacterFromCollection(character.id);
+            delete collectedState[character.id];
+            console.log(`Removed character: ${character.id}`);
+        });
+
+        this.setState({collectedCharacters: collectedState});
     }
 
     // Handle media search when the search button is clicked on a card
@@ -264,7 +278,8 @@ export default class App extends React.Component {
                         <Route path='/collection'>
                             <CollectionPage
                                 characters={Object.values(this.state.collectedCharacters)}
-                                handleRemove={this.handleRemove}
+                                handleRemoveCollected={this.handleRemoveCollected}
+                                handleRemoveAllCollected={this.handleRemoveAllCollected}
                                 handleMediaSearch={this.handleMediaSearch}/>
                         </Route>
                     </Switch>
