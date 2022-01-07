@@ -125,7 +125,6 @@ export default class CollectionPage extends React.Component {
         this.setState({pageNum: newPage});
     }
 
-    // TODO: Add remove all feature for only those characters that show in collection page
     render() {
         // Build card components based on props character data
         // If a search was done, use those characters instead

@@ -266,7 +266,9 @@ export default class App extends React.Component {
                             <RollPage
                                 currentCharacter={this.state.currentCharacter}
                                 nextCharacter={this.state.nextCharacter}
-                                numberRemainingCharacters={this.state.rolledCharacterStack.length}
+                                numberRemainingCharacters={this.state.rolledCharacterStack.length
+                                    + (this.state.currentCharacter ?
+                                    this.state.nextCharacter ? 2 : 1 : 0)}
                                 skippedCharacters={this.state.skippedCharacterStack}
                                 handleClaim={this.handleClaim}
                                 handleSkip={this.handleSkip}

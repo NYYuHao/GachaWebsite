@@ -89,7 +89,6 @@ export default class RollPage extends React.Component {
         }
     }
 
-    // TODO: Switch page button is hard to click on mobile sizes
     // TODO: Reroll can be pressed multiple times
     render() {
         // Build card components based on props character data
@@ -156,9 +155,7 @@ export default class RollPage extends React.Component {
                             </div>
                         }
                     </div>
-                    <p>Cards remaining: {this.props.numberRemainingCharacters +
-                            (this.state.currentCharacter ?
-                            this.state.nextCharacter ? 2 : 1 : 0)}</p>
+                    <p>Cards remaining: {this.props.numberRemainingCharacters}</p>
 
                     {/* Buttons shouldn't function while animations are playing */}
                     <div className="roll-buttons">
