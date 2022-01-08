@@ -1,14 +1,21 @@
+:root {
+    --main-text-color: black;
+    --main-bg-color: white;
+    --main-button-color: #33b0ff;
+}
+
 body {
     font-family: arial;
-    color: black;
+    background: var(--main-bg-color);
+    color: var(--main-text-color);
     font-size: 15px;
 }   
 
 button {
     margin: 10px;
     padding: 10px;
-    color: white;
-    background: #33b0ff;
+    color: var(--main-bg-color);
+    background: var(--main-button-color);
     border: none;
     transition: background 0.2s;
     width: 100px;
@@ -17,7 +24,7 @@ button {
 }
 
 button:hover {
-    background: #0e8fe0
+    background: #0e8fe0;
 }
 
 .navbar {

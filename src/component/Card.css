@@ -8,7 +8,7 @@
     margin: 1.3vw;
     padding: 1.3vw;
     border: 1px solid black;
-    background: white;
+    background: var(--main-bg-color);
     overflow: hidden;
     font-size: 14px;
 }

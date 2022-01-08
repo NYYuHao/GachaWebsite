@@ -33,7 +33,7 @@
     top: 50%;
     margin-left: calc(-35vw - 10px);
     margin-top: calc(-35vh - 10px);
-    background: white;
+    background: var(--main-bg-color);
     opacity: 1;
     z-index: 11;
     padding: 10px;
