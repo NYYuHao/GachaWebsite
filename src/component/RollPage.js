@@ -44,7 +44,6 @@ export default class RollPage extends React.Component {
     // When new props are given, change the state to update cards and handle
     // animations
     componentDidUpdate(prevProps) {
-        // TODO: Maybe make it so the card transition happens on page load?
         if (prevProps.currentCharacter !== this.props.currentCharacter) {
             if (!prevProps.currentCharacter) {
                 this.setState({
@@ -178,6 +177,9 @@ export default class RollPage extends React.Component {
                     style={!this.state.onSkipPage &&
                         !this.state.isInterfaceTransitioning ? {display: 'none'} : {}}
                     className={"skips" + skipsTransitionClass}>
+                    <div>
+                        <button onClick={this.props.handleRemoveAllSkipped}>Remove All</button>
+                    </div>
                     {skippedCards}
                 </div>
                 

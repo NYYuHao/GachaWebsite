@@ -203,6 +203,18 @@ export default class App extends React.Component {
         console.log(`Removed character: ${character.id}`);
     }
 
+    // Handle remove all when the remove all button is clicked in
+    // RollPage
+    handleRemoveAllSkipped = () => {
+        // TODO: Add the value of skipped characters to some kind of currency?
+
+        // Update state to change skipped characters
+        this.setState({
+            skippedCharacterStack: []
+        });
+        console.log(`Removed all skipped characters`);
+    }
+
     // Handle reroll when characters run out in RollPage
     handleReroll = () => {
         this.setRollCharacters(generateCharacterIds());
@@ -274,6 +286,7 @@ export default class App extends React.Component {
                                 handleSkip={this.handleSkip}
                                 handleClaimSkipped={this.handleClaimSkipped}
                                 handleRemoveSkipped={this.handleRemoveSkipped}
+                                handleRemoveAllSkipped={this.handleRemoveAllSkipped}
                                 handleReroll={this.handleReroll}
                                 handleMediaSearch={this.handleMediaSearch}/>
                         </Route>
