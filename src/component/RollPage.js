@@ -128,6 +128,8 @@ export default class RollPage extends React.Component {
 
                 <h1>Gacha Website</h1>
 
+                <h4>${this.props.totalMoney}</h4>
+
                 <div style={
                         this.state.onSkipPage &&
                         !this.state.isInterfaceTransitioning ? {display: 'none'} : {}}

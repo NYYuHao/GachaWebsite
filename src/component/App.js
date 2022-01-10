@@ -22,7 +22,8 @@ export default class App extends React.Component {
             rolledCharacterBuffer: [],      // RollPage: Buffer characters to reduce API calls, invisible to user
             skippedCharacterStack: [],      // RollPage: Array of skipped characters
             collectedCharacters: {},        // CollectionPage: {id: character} pairs for all characters
-            searchMedia: null               // Object representing media for searching, null if no search active
+            searchMedia: null,              // Object representing media for searching, null if no search active
+            totalMoney: 0
         };
     }
 
@@ -190,7 +191,8 @@ export default class App extends React.Component {
 
     // Handle remove for skipped characters in RollPage
     handleRemoveSkipped = (character) => {
-        // TODO: Add the value of skipped characters to some kind of currency?
+        // Add the value of the removed character to total money
+        let totalMoney = this.state.totalMoney + character.value;
 
         // Remove the skipped character from the list of skips
         let skippedCharacters = this.state.skippedCharacterStack.filter(
@@ -198,7 +200,8 @@ export default class App extends React.Component {
         
         // Update state to change skipped characters
         this.setState({
-            skippedCharacterStack: skippedCharacters
+            skippedCharacterStack: skippedCharacters,
+            totalMoney: totalMoney
         });
         console.log(`Removed character: ${character.id}`);
     }
@@ -206,11 +209,15 @@ export default class App extends React.Component {
     // Handle remove all when the remove all button is clicked in
     // RollPage
     handleRemoveAllSkipped = () => {
-        // TODO: Add the value of skipped characters to some kind of currency?
+        // Add the value of the removed characters to total money
+        let totalMoney = this.state.totalMoney;
+        this.state.skippedCharacterStack.forEach((character) =>
+            {totalMoney += character.value});
 
         // Update state to change skipped characters
         this.setState({
-            skippedCharacterStack: []
+            skippedCharacterStack: [],
+            totalMoney: totalMoney
         });
         console.log(`Removed all skipped characters`);
     }
@@ -282,6 +289,7 @@ export default class App extends React.Component {
                                     + (this.state.currentCharacter ?
                                     this.state.nextCharacter ? 2 : 1 : 0)}
                                 skippedCharacters={this.state.skippedCharacterStack}
+                                totalMoney={this.state.totalMoney}
                                 handleClaim={this.handleClaim}
                                 handleSkip={this.handleSkip}
                                 handleClaimSkipped={this.handleClaimSkipped}
