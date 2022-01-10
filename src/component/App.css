@@ -2,6 +2,9 @@
     --main-text-color: black;
     --main-bg-color: white;
     --main-button-color: #33b0ff;
+    --main-button-hover-color: #0e8fe0;
+    --sub-button-color: #de0d0d;
+    --sub-button-hover-color: #a10606;
 }
 
 body {
@@ -22,9 +25,15 @@ button {
     height: 50px;
     font-size: 15px;
 }
-
 button:hover {
-    background: #0e8fe0;
+    background: var(--main-button-hover-color);
+}
+
+.sub-button {
+    background: var(--sub-button-color);
+}
+.sub-button:hover {
+    background: var(--sub-button-hover-color);
 }
 
 .navbar {
@@ -33,3 +42,13 @@ button:hover {
     display: flex;
     justify-content: space-evenly;
 }
+
+.option-bar {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+    flex-flow: wrap;
+    margin: 10px;
+}
+

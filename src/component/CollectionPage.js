@@ -183,7 +183,7 @@ export default class CollectionPage extends React.Component {
                         </button>
                     </div>
                     <div className="remove-all-button">
-                        <button onClick={this.handleRemoveAll}>
+                        <button className="sub-button" onClick={this.handleRemoveAll}>
                             Remove All
                         </button>
                     </div>
