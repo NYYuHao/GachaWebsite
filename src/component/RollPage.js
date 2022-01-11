@@ -126,9 +126,10 @@ export default class RollPage extends React.Component {
                     this.state.isInterfaceTransitioning ? {overflow: 'hidden'} : {}}
                 className="roll-page">
 
-                <h1>Gacha Website</h1>
-
-                <h4>${this.props.totalMoney}</h4>
+                <div className="info-bar">
+                    <h1>Gacha Website</h1>
+                    <h4>${this.props.totalMoney}</h4>
+                </div>
 
                 <div style={
                         this.state.onSkipPage &&

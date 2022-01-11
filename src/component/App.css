@@ -43,12 +43,21 @@ button:hover {
     justify-content: space-evenly;
 }
 
-.option-bar {
+.info-bar {
     display: flex;
-    width: 100%;
     align-items: center;
+    width: 100%;
     gap: 10px;
     flex-flow: wrap;
+}
+/* Last child should be at the far right */
+.info-bar *:last-child {
+    margin: auto;
+    margin-right: 10px;
+}
+
+.option-bar {
     margin: 10px;
 }
 
+.tooltip {}

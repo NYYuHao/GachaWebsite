@@ -163,7 +163,7 @@ export default class CollectionPage extends React.Component {
         return (
             <div className="collection-page">
                 <h1>Collection</h1>
-                <div className="option-bar">
+                <div className="info-bar option-bar">
                     <div className="sort-container">
                         <button className="sort-button">
                             Sort
@@ -196,7 +196,7 @@ export default class CollectionPage extends React.Component {
                 <div className="collection">
                     {cardsList}
                 </div>
-                <div className="option-bar">
+                <div className="info-bar option-bar">
                     <div className="page-settings">
                         <button onClick={this.changePage}>&lt;</button>
                         <span>{this.state.pageNum + 1}</span>

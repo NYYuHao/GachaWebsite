@@ -49,8 +49,6 @@
 
 /* Buttons for switching pages in collection */
 .page-settings {
-    margin: auto;
-    margin-right: 10px;
 }
 .page-settings > * {
     width: 50px;
