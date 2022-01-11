@@ -181,7 +181,7 @@ export default class RollPage extends React.Component {
                         !this.state.isInterfaceTransitioning ? {display: 'none'} : {}}
                     className={"skips" + skipsTransitionClass}>
                     {skippedCards}
-                    <div className="option-bar" 
+                    <div className="info-bar option-bar" 
                         style={skippedCards.length === 0 ? {display: 'none'} : {}}>
                         <button className="sub-button"
                             onClick={this.props.handleRemoveAllSkipped}

@@ -40,7 +40,7 @@
     width: calc(100% - 20vw);
     left: 20vw;
     height: 85vh;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 @keyframes skips-leaving {
     0% {left: 20vw;}
