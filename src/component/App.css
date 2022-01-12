@@ -45,10 +45,10 @@ button:hover {
 
 .info-bar {
     display: flex;
+    flex-flow: wrap;
     align-items: center;
     width: 100%;
     gap: 10px;
-    flex-flow: wrap;
 }
 /* Last child should be at the far right */
 .info-bar *:last-child {
@@ -61,3 +61,9 @@ button:hover {
 }
 
 .tooltip {}
+
+.card-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

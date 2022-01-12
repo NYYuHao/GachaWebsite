@@ -1,14 +1,3 @@
-.collection-page {
-
-}
-
-.collection {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: auto;
-}
-
 /* Dropdown menu for sorting */
 .sort-container {
     width: 150px;

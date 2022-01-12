@@ -179,7 +179,7 @@ export default class RollPage extends React.Component {
                 <div
                     style={!this.state.onSkipPage &&
                         !this.state.isInterfaceTransitioning ? {display: 'none'} : {}}
-                    className={"skips" + skipsTransitionClass}>
+                    className={"card-list skips" + skipsTransitionClass}>
                     {skippedCards}
                     <div className="info-bar option-bar" 
                         style={skippedCards.length === 0 ? {display: 'none'} : {}}>

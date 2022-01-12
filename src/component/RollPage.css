@@ -33,9 +33,6 @@
 }
 
 .skips {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     position: relative;
     width: calc(100% - 20vw);
     left: 20vw;

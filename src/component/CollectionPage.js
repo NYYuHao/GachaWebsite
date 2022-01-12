@@ -193,7 +193,7 @@ export default class CollectionPage extends React.Component {
                         <button onClick={this.changePage}>&gt;</button>
                     </div>
                 </div>
-                <div className="collection">
+                <div className="card-list">
                     {cardsList}
                 </div>
                 <div className="info-bar option-bar">
