@@ -301,6 +301,7 @@ export default class App extends React.Component {
                         <Route path='/collection'>
                             <CollectionPage
                                 characters={Object.values(this.state.collectedCharacters)}
+                                totalMoney={this.state.totalMoney}
                                 handleRemoveCollected={this.handleRemoveCollected}
                                 handleRemoveAllCollected={this.handleRemoveAllCollected}
                                 handleMediaSearch={this.handleMediaSearch}/>

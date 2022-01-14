@@ -162,7 +162,12 @@ export default class CollectionPage extends React.Component {
 
         return (
             <div className="collection-page">
-                <h1>Collection</h1>
+
+                <div className="info-bar">
+                    <h1>Collection</h1>
+                    <h4>${this.props.totalMoney}</h4>
+                </div>
+
                 <div className="info-bar option-bar">
                     <div className="sort-container">
                         <button className="sort-button">
