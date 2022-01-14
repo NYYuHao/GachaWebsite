@@ -165,7 +165,7 @@ export default class CollectionPage extends React.Component {
 
                 <div className="info-bar">
                     <h1>Collection</h1>
-                    <h4>${this.props.totalMoney}</h4>
+                    <h4 className="info-right-element">${this.props.totalMoney}</h4>
                 </div>
 
                 <div className="info-bar option-bar">
@@ -192,17 +192,17 @@ export default class CollectionPage extends React.Component {
                             Remove All
                         </button>
                     </div>
-                    <div className="page-settings">
+                    <div className="page-settings info-right-element">
                         <button onClick={this.changePage}>&lt;</button>
                         <span>{this.state.pageNum + 1}</span>
                         <button onClick={this.changePage}>&gt;</button>
                     </div>
                 </div>
-                <div className="card-list">
+                <div className="flex-list">
                     {cardsList}
                 </div>
                 <div className="info-bar option-bar">
-                    <div className="page-settings">
+                    <div className="page-settings info-right-element">
                         <button onClick={this.changePage}>&lt;</button>
                         <span>{this.state.pageNum + 1}</span>
                         <button onClick={this.changePage}>&gt;</button>

@@ -25,7 +25,6 @@ export default class RollPage extends React.Component {
     // Given a skipped character, return a card component and an additional
     // button to claim it
     renderSkippedCard = (character) => {
-        //TODO: Consider animations when claimed?
         return <div className="card-container" key={character.id}>
                 <Card
                     character={character}
@@ -128,7 +127,7 @@ export default class RollPage extends React.Component {
 
                 <div className="info-bar">
                     <h1>Gacha Website</h1>
-                    <h4>${this.props.totalMoney}</h4>
+                    <h4 className="info-right-element">${this.props.totalMoney}</h4>
                 </div>
 
                 <div style={
@@ -179,11 +178,11 @@ export default class RollPage extends React.Component {
                 <div
                     style={!this.state.onSkipPage &&
                         !this.state.isInterfaceTransitioning ? {display: 'none'} : {}}
-                    className={"card-list skips" + skipsTransitionClass}>
+                    className={"flex-list skips" + skipsTransitionClass}>
                     {skippedCards}
                     <div className="info-bar option-bar" 
                         style={skippedCards.length === 0 ? {display: 'none'} : {}}>
-                        <button className="sub-button"
+                        <button className="sub-button info-right-element"
                             onClick={this.props.handleRemoveAllSkipped}
                             style={{margin: 'auto', marginRight: '10px'}}>
                             Remove All

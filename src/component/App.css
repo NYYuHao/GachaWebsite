@@ -50,8 +50,7 @@ button:hover {
     width: 100%;
     gap: 10px;
 }
-/* Last child should be at the far right */
-.info-bar *:last-child {
+.info-right-element {
     margin: auto;
     margin-right: 10px;
 }
@@ -62,7 +61,7 @@ button:hover {
 
 .tooltip {}
 
-.card-list {
+.flex-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
