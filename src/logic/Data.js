@@ -25,6 +25,12 @@ function getCollectedCharacterIds() {
     return Object.keys(collectionData);
 }
 
+// Get the total money the user has from localStorage
+function getTotalMoney() {
+    console.log("Getting total money");
+    return localStorage.totalMoney | 0;
+}
+
 // Add the given id to the user's collection (stored in localStorage)
 function addCharacterToCollection(id) {
     console.log("Adding character to collection");
@@ -85,11 +91,12 @@ function anilistToMedia(anilistMedia) {
 }
 
 // Save collection to localstorage, to be called on page exit or at intervals
-function saveDataToStorage() {
+function saveDataToStorage(data) {
     console.log("Saving to storage");
     localStorage.collection = JSON.stringify(collectionData);
+    localStorage.totalMoney = JSON.stringify(data.totalMoney);
 }
 
 export {generateCharacterIds, getCollectedCharacterIds,
     addCharacterToCollection, removeCharacterFromCollection,
-    anilistToCharacter, anilistToMedia, saveDataToStorage};
+    anilistToCharacter, anilistToMedia, saveDataToStorage, getTotalMoney};

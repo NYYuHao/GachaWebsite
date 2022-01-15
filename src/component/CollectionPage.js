@@ -147,6 +147,7 @@ export default class CollectionPage extends React.Component {
                     this.compareFields(char1.media, char2.media));
                 break;
             case 'Value':
+                // TODO: Sort by value not working
                 charactersList.sort((char1, char2) =>
                     this.compareFields(char1.value, char2.value));
                 break;

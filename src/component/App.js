@@ -5,7 +5,7 @@ import RollPage from './RollPage';
 import CollectionPage from './CollectionPage';
 import SearchInfo from './SearchInfo';
 import {getCharactersByIds, getMediaById} from '../logic/Anilist.js';
-import {generateCharacterIds, getCollectedCharacterIds,
+import {generateCharacterIds, getCollectedCharacterIds, getTotalMoney,
     addCharacterToCollection, removeCharacterFromCollection,
     anilistToCharacter, anilistToMedia, saveDataToStorage}
     from '../logic/Data';
@@ -21,7 +21,7 @@ export default class App extends React.Component {
             rolledCharacterStack: [],       // RollPage: Stack of remaining characters
             rolledCharacterBuffer: [],      // RollPage: Buffer characters to reduce API calls, invisible to user
             skippedCharacterStack: [],      // RollPage: Array of skipped characters
-            collectedCharacters: {},        // CollectionPage: {id: character} pairs for all characters
+            collectedCharacters: {},        // CollectionPage: {id: character} pairs for all collected characters
             searchMedia: null,              // Object representing media for searching, null if no search active
             totalMoney: 0
         };
@@ -31,10 +31,13 @@ export default class App extends React.Component {
         // Set the characters that appear on the roll page
         this.setRollCharacters(generateCharacterIds());
         this.setCollectedCharacters(getCollectedCharacterIds());
+        this.setTotalMoney(getTotalMoney());
 
         // Set up event listener on page close to save data
         window.addEventListener("beforeunload", (ev) => {
-            saveDataToStorage();
+            saveDataToStorage({
+                totalMoney: this.state.totalMoney
+            });
         });
     }
 
@@ -116,6 +119,11 @@ export default class App extends React.Component {
         }
 
         this.setState({collectedCharacters: collectedState});
+    }
+
+    // Set the state with the total money the user already had
+    async setTotalMoney(money) {
+        this.setState({totalMoney: money});
     }
 
     // Handle claim when the claim button is clicked on RollPage
