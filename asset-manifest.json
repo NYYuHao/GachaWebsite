@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/GachaWebsite/static/css/main.344fa4ec.chunk.css",
-    "main.js": "/GachaWebsite/static/js/main.419fcfc6.chunk.js",
-    "main.js.map": "/GachaWebsite/static/js/main.419fcfc6.chunk.js.map",
+    "main.js": "/GachaWebsite/static/js/main.fa74ffdb.chunk.js",
+    "main.js.map": "/GachaWebsite/static/js/main.fa74ffdb.chunk.js.map",
     "runtime-main.js": "/GachaWebsite/static/js/runtime-main.ff0d96ea.js",
     "runtime-main.js.map": "/GachaWebsite/static/js/runtime-main.ff0d96ea.js.map",
-    "static/js/2.69a344d7.chunk.js": "/GachaWebsite/static/js/2.69a344d7.chunk.js",
-    "static/js/2.69a344d7.chunk.js.map": "/GachaWebsite/static/js/2.69a344d7.chunk.js.map",
+    "static/js/2.e17c48cd.chunk.js": "/GachaWebsite/static/js/2.e17c48cd.chunk.js",
+    "static/js/2.e17c48cd.chunk.js.map": "/GachaWebsite/static/js/2.e17c48cd.chunk.js.map",
     "index.html": "/GachaWebsite/index.html",
     "static/css/main.344fa4ec.chunk.css.map": "/GachaWebsite/static/css/main.344fa4ec.chunk.css.map",
-    "static/js/2.69a344d7.chunk.js.LICENSE.txt": "/GachaWebsite/static/js/2.69a344d7.chunk.js.LICENSE.txt"
+    "static/js/2.e17c48cd.chunk.js.LICENSE.txt": "/GachaWebsite/static/js/2.e17c48cd.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.ff0d96ea.js",
-    "static/js/2.69a344d7.chunk.js",
+    "static/js/2.e17c48cd.chunk.js",
     "static/css/main.344fa4ec.chunk.css",
-    "static/js/main.419fcfc6.chunk.js"
+    "static/js/main.fa74ffdb.chunk.js"
   ]
 }
