@@ -29,7 +29,7 @@ export default class App extends React.Component {
 
     componentDidMount() {
         // Set the characters that appear on the roll page
-        this.setRollCharacters(generateCharacterIds());
+        this.setRollCharacters();
         this.setCollectedCharacters(getCollectedCharacterIds());
         this.setTotalMoney(getTotalMoney());
 
@@ -41,32 +41,27 @@ export default class App extends React.Component {
         });
     }
 
-    // Asynchronously update the roll buffer with the provided IDs
-    updateRollBuffer = async (ids) => {
+    // Asynchronously update the old roll buffer
+    updateRollBuffer = async (oldBuffer) => {
         // TODO: Consider mutex or similar to prevent this function from
         // running multiple times
-        let characterBuffer = [...this.state.rolledCharacterBuffer];
-        let newCharacters = await getCharactersByIds(ids);
-        characterBuffer = characterBuffer.concat(newCharacters.data.Page.characters);
+        let newCharacters = await getCharactersByIds(generateCharacterIds());
+        let characterBuffer = oldBuffer.concat(newCharacters.data.Page.characters);
         console.log(characterBuffer);
         this.setState({rolledCharacterBuffer: characterBuffer});
     }
 
-    // Set the state to contain the randomly generated characters for rolling
-    async setRollCharacters(ids) {
+    // Set the state to contain randomly generated characters for rolling
+    async setRollCharacters() {
         // Get the character data returned by Anilist
-        // Update the roll buffer if necessary,
-        // waiting if no characters are available
+        // Update the roll buffer if no characters are available
+        // (This should hopefully only occur on page load)
         if (this.state.rolledCharacterBuffer.length === 0) {
-            await this.updateRollBuffer(ids);
-        }
-        else if (this.state.rolledCharacterBuffer.length < 20) {
-            this.updateRollBuffer(ids);
+            await this.updateRollBuffer([]);
         }
         let characterBuffer = [...this.state.rolledCharacterBuffer];
         let characters = characterBuffer.slice(0, 10);
         characterBuffer = characterBuffer.slice(10);
-
 
         // Update the state by mapping all returned characters to expected
         // array format
@@ -86,7 +81,14 @@ export default class App extends React.Component {
             nextCharacter: rollStack.pop(),
             rolledCharacterStack: rollStack,
             rolledCharacterBuffer: characterBuffer
+        }, () => {
+            // TODO: Carefully inspect this logic to avoid race conditions
+            // After updating state, add characters to roll buffer if running low
+            if (characterBuffer.length < 20) {
+                this.updateRollBuffer(characterBuffer);
+            }
         });
+
     }
 
     // Set the state to contain characters already in the collection
@@ -232,7 +234,7 @@ export default class App extends React.Component {
 
     // Handle reroll when characters run out in RollPage
     handleReroll = () => {
-        this.setRollCharacters(generateCharacterIds());
+        this.setRollCharacters();
         console.log("Rerolling");
     }
 
@@ -283,7 +285,7 @@ export default class App extends React.Component {
                     <div className="navbar">
                         <Link to="/GachaWebsite">Roll</Link>
                         <Link to="/GachaWebsite/collection">Collection</Link>
-                        <Link onClick={saveDataToStorage}>Save</Link>
+                        <Link to="/GachaWebsite" onClick={saveDataToStorage}>Save</Link>
                     </div>
                     <SearchInfo
                         media={this.state.searchMedia}
