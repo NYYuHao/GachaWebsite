@@ -281,15 +281,15 @@ export default class App extends React.Component {
             <Router>
                 <div className="app">
                     <div className="navbar">
-                        <Link to="/">Roll</Link>
-                        <Link to="/collection">Collection</Link>
+                        <Link to="/GachaWebsite">Roll</Link>
+                        <Link to="/GachaWebsite/collection">Collection</Link>
                         <Link onClick={saveDataToStorage}>Save</Link>
                     </div>
                     <SearchInfo
                         media={this.state.searchMedia}
                         handleCloseSearch={this.handleCloseSearch}/>
                     <Switch>
-                        <Route exact path='/'>
+                        <Route exact path='/GachaWebsite'>
                             <RollPage
                                 currentCharacter={this.state.currentCharacter}
                                 nextCharacter={this.state.nextCharacter}
@@ -306,7 +306,7 @@ export default class App extends React.Component {
                                 handleReroll={this.handleReroll}
                                 handleMediaSearch={this.handleMediaSearch}/>
                         </Route>
-                        <Route path='/collection'>
+                        <Route path='/GachaWebsite/collection'>
                             <CollectionPage
                                 characters={Object.values(this.state.collectedCharacters)}
                                 totalMoney={this.state.totalMoney}
