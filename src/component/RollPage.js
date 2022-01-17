@@ -179,15 +179,14 @@ export default class RollPage extends React.Component {
                     style={!this.state.onSkipPage &&
                         !this.state.isInterfaceTransitioning ? {display: 'none'} : {}}
                     className={"flex-list skips" + skipsTransitionClass}>
-                    {skippedCards}
                     <div className="info-bar option-bar" 
                         style={skippedCards.length === 0 ? {display: 'none'} : {}}>
                         <button className="sub-button info-right-element"
-                            onClick={this.props.handleRemoveAllSkipped}
-                            style={{margin: 'auto', marginRight: '10px'}}>
+                            onClick={this.props.handleRemoveAllSkipped}>
                             Remove All
                         </button>
                     </div>
+                    {skippedCards}
                 </div>
                 
 

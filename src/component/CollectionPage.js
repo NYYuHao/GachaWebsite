@@ -147,18 +147,17 @@ export default class CollectionPage extends React.Component {
                     this.compareFields(char1.media, char2.media));
                 break;
             case 'Value':
-                // TODO: Sort by value not working
                 charactersList.sort((char1, char2) =>
                     this.compareFields(char1.value, char2.value));
                 break;
             default:
                 break;
         }
-        // Only render enough cards to fit a page
-        charactersList = charactersList.slice(this.state.pageNum*20, (this.state.pageNum+1)*20);
-
         // Change order if necessary
         if (!this.state.sortAscending) charactersList.reverse();
+
+        // Only render enough cards to fit a page
+        charactersList = charactersList.slice(this.state.pageNum*20, (this.state.pageNum+1)*20);
         let cardsList = charactersList.map(this.renderCard);
 
         return (
