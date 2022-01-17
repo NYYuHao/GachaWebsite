@@ -47,7 +47,6 @@ export default class App extends React.Component {
         // running multiple times
         let newCharacters = await getCharactersByIds(generateCharacterIds());
         let characterBuffer = oldBuffer.concat(newCharacters.data.Page.characters);
-        console.log(characterBuffer);
         this.setState({rolledCharacterBuffer: characterBuffer});
     }
 
